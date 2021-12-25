@@ -17,13 +17,13 @@ export class CartService {
         return this.http.get<Cart>(this.url);
     }
 
-    public addProduct(id: number | undefined): Observable<any> {
-        const postUrl = `${this.url}/${id}`;
+    public addProduct(id: number): Observable<any> {
         // let params = new HttpParams()
         // .append("id", "id")
         // .append("quantity", "1");
+        let postUrl = `${this.url}/${id}`;
         console.log("url= " + postUrl);
-        return this.http.post(postUrl, null);
+        return this.http.post(postUrl, {body: null});
     }
 
     public remove(id: number, quantity: number): Observable<any> {

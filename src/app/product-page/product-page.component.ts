@@ -4,7 +4,6 @@ import { CartService } from '../cart/cart.service';
 import { Product } from '../models/product';
 import { ProductService } from '../product/product.service';
 import { AuthenticationService } from '../auth/services/auth.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-product-page',
@@ -36,11 +35,11 @@ export class ProductPageComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService
       .getProduct(id)
-      .subscribe((product) => this.product = product); // TODO refactor to getter
+      .subscribe((product) => this.product = product);
   }
     
-  addToCart(id: number | undefined): void {
+  addToCart(id: number): void {
+    this.cartService.addProduct(id).subscribe();
     console.log("called add to cart id=" + id);
-    this.cartService.addProduct(id);
   }
 }
