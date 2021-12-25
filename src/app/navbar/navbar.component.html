@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <button mat-icon-button aria-label="Home button" routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    aria-label="Checkout button"
+    class="snipcart-checkout"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <!-- <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">
+    <mat-icon>power_settings_new</mat-icon>
+    Login
+  </button>
+  <button mat-menu-item *ngIf="isAuthenticated" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button> -->
+</mat-toolbar>
