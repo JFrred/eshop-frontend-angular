@@ -12,21 +12,19 @@ import { AuthenticationService } from '../auth/services/auth.service';
 })
 export class ProductPageComponent implements OnInit {
   product!: Product;
-  isAuthenticated = false;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
     private authService: AuthenticationService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.getProduct();
-    this.isAuthenticated = this.authService.isUserLoggedIn();
-    console.log("isAuthenticated=" + this.isAuthenticated);
-    if (this.isAuthenticated) {
-      this.addToCart(this.product.id);
+    if (this.authService.isUserLoggedIn()) {
+      this.getProduct();
+      if (this.product)
+        this.addToCart(this.product.id); //undefined
       console.log("done");
     }
   }
@@ -37,9 +35,9 @@ export class ProductPageComponent implements OnInit {
       .getProduct(id)
       .subscribe((product) => this.product = product);
   }
-    
+
   addToCart(id: number): void {
-    this.cartService.addProduct(id).subscribe();
+    this.cartService.add(id).subscribe();
     console.log("called add to cart id=" + id);
   }
 }

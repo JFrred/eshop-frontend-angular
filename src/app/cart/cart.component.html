@@ -1,6 +1,6 @@
-<div *ngIf="cart">
-    <p><b>total cart price:</b> {{ cart.totalPrice }} $</p>
-    <p><b>cart items count: </b>{{ cart.items.length }}</p>
+<div>
+    <p *ngIf="cart"><b>total cart price:</b> {{ cart.totalPrice }} $</p>
+    <p *ngIf="items"><b>cart items count: </b>{{ items.length }}</p>
 
     <h2>cart items</h2>
 
@@ -13,16 +13,16 @@
         </tr>
 
 
-        <tr *ngFor="let item of cart.items">
+        <tr *ngFor="let item of items">
             <input type="checkbox" name="sameadr" value="item.id">
             <th>{{item.name}}</th>
             <td>{{item.price}}</td>
             <td>{{ item.quantity }}</td>
-            <!-- <td>{{item.quantity}}</td> -->
             <td><button [routerLink]="['/order-form']" [queryParams]="{productId: item.id}">buy</button></td>
             <td><button (click)="remove(item.id)">remove</button></td>
         </tr>
 
-
+        <button (click)="orderSelected()">order selected</button> 
+        <!-- list of ids as arg-->
     </table>
 </div>

@@ -17,24 +17,12 @@ export class CartService {
         return this.http.get<Cart>(this.url);
     }
 
-    public addProduct(id: number): Observable<any> {
-        // let params = new HttpParams()
-        // .append("id", "id")
-        // .append("quantity", "1");
-        let postUrl = `${this.url}/${id}`;
-        console.log("url= " + postUrl);
-        return this.http.post(postUrl, {body: null});
+    public add(id: number): Observable<any> {
+        return this.http.post(`${this.url}/${id}`, {body: null});
     }
 
     public remove(id: number, quantity: number): Observable<any> {
-        let params = new HttpParams()
-        .append("id", "id")
-        .append("quantity", "quantity");
-
-        console.log("id: " + id);
-        console.log("quantity: " + quantity);
-
-        return this.http.delete<any>(this.url, {params: params});
+        return this.http.delete<any>(`${this.url}/${id}`);
     }
 
 }

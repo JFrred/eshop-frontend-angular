@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductsService } from '../products/products.service';
 import { Cart } from './cart';
+import { CartItem } from './cart.item';
 import { CartService } from './cart.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { CartService } from './cart.service';
 })
 export class CartComponent implements OnInit {
   cart!: Cart;
+  items!: CartItem[];
 
   constructor(private cartService: CartService,
     private router: Router) { }
@@ -23,20 +24,25 @@ export class CartComponent implements OnInit {
     this.cartService.get().subscribe(
       (response: Cart) => {
         this.cart = response;
+        this.items = response.items;
 
         console.log(response);
+        console.log("items: " + this.items[0]);
       }
     )
   }
-
+  
   public buyFromCart(id: number): void {
     this.router.navigate(['/order-form', { productId: id }])
   }
-
+  
   public remove(id: number): void {
     console.log(id);
     this.cartService.remove(id, 1).subscribe();
     this.reloadPage();
+  }
+  
+  public orderSelected(): void {
   }
 
   reloadPage(): void {
