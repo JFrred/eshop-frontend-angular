@@ -24,8 +24,7 @@ export class ProductPageComponent implements OnInit {
     if (this.authService.isUserLoggedIn()) {
       this.getProduct();
       if (this.product)
-        this.addToCart(this.product.id); //undefined
-      console.log("done");
+        this.addToCart(this.product.id);
     }
   }
 
@@ -38,6 +37,5 @@ export class ProductPageComponent implements OnInit {
 
   addToCart(id: number): void {
     this.cartService.add(id).subscribe();
-    console.log("called add to cart id=" + id);
   }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../order/order.service';
-import { Product } from '../models/product'; 
-import { ProductService } from '../product/product.service'; 
+import { Product } from '../models/product';
+import { ProductService } from '../product/product.service';
 
 @Component({
   selector: 'app-order-form',
@@ -10,33 +10,45 @@ import { ProductService } from '../product/product.service';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
-  product!: Product;
-  id!: number;
+  products: Product[] = [];
+  ids!: number[] | undefined;
 
   constructor(private router: ActivatedRoute,
     private productService: ProductService,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
-    this.getProduct();
+    this.getIds();
+    this.getProducts();
   }
 
-  public getProduct(): void {
-    this.router.queryParams.subscribe(
-      params => {
-        this.id = params['productId'];
-        console.log("id: " + this.id);
-      });
-
-    this.productService.getProduct(this.id).subscribe(
-      (response: any) => {
-        this.product = response;
-        console.log(this.product);
-      }
-    );
+  getIds(): void {
+    this.ids = this.router.snapshot.paramMap.get('ids')?.split(',')
+    .map(item => {
+      return parseInt(item);
+    });
+    console.log(this.ids);
   }
 
-  public save(productId:number): void {
+  public getProducts(): void {      
+    if (this.ids != null) {
+      console.log("checkpoint");
+      this.ids.forEach(id => {
+        console.log("id:"  +id);
+        let product!: Product;
+        this.productService.getProduct(id).subscribe(
+          (response: Product) => {
+            this.products.push(response);
+            console.log("prod: " + product);
+          }
+        );
+        (product);
+      })
+    }
+    console.log("products: " + this.products);
+  }
+
+  public save(productId: number): void {
     console.log("save(): id=" + productId);
     this.orderService.saveOne(productId, 1, "TRANSFER");
   }

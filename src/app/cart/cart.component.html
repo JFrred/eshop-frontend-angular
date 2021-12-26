@@ -18,7 +18,7 @@
             <th>{{item.name}}</th>
             <td>{{item.price}}</td>
             <td>{{ item.quantity }}</td>
-            <td><button [routerLink]="['/order-form']" [queryParams]="{productId: item.id}">buy</button></td>
+            <!-- <td><button [routerLink]="['/order-form']" [queryParams]="{productId: item.id}">buy</button></td> -->
             <td><button (click)="remove(item.id)">remove</button></td>
         </tr>
 

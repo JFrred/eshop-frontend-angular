@@ -13,6 +13,7 @@ import { CartService } from './cart.service';
 export class CartComponent implements OnInit {
   cart!: Cart;
   items!: CartItem[];
+  ids!: number[];
 
   constructor(public authService: AuthenticationService,
     private cartService: CartService,
@@ -39,26 +40,24 @@ export class CartComponent implements OnInit {
     this.cartService.remove(id, 1).subscribe();
     this.reloadPage();
   }
-
-  public orderCart(id: number): void {
-    this.router.navigate(['/order-form', { productId: id }])
-  }
-
+  
   public orderSelected(): void {
-    let ids = [];
-    if (ids.length > 0) {
-      ids = this.items.filter(x => x.isSelected === true);
-      this.router.navigate(['/order-form', { productsIds: ids }])
-    }
+      this.ids = this.items.filter(x => x.isSelected).map(item => item.id);
+      console.log("ids: " + this.ids);
+      this.router.navigate(['/order-form', { ids: this.ids }])
   }
 
   public selectItem(id: number): void {
-    let cartItem = this.items.find(x => x.id === id);
+    let cartItem = this.items.find(x => x.id == id);
     if (cartItem)
       cartItem.isSelected = true;
 
     console.log(cartItem?.isSelected);
   }
+
+  // public orderCart(id: number): void {
+  //   this.router.navigate(['/order-form', { productId: id }])
+  // }
 
   reloadPage(): void {
     window.location.reload();
