@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   items!: CartItem[];
 
   constructor(private cartService: CartService,
+
     private router: Router) { }
 
   ngOnInit(): void {
@@ -31,18 +32,31 @@ export class CartComponent implements OnInit {
       }
     )
   }
-  
-  public buyFromCart(id: number): void {
-    this.router.navigate(['/order-form', { productId: id }])
-  }
-  
+
   public remove(id: number): void {
     console.log(id);
     this.cartService.remove(id, 1).subscribe();
     this.reloadPage();
   }
-  
+
+  public orderCart(id: number): void {
+    this.router.navigate(['/order-form', { productId: id }])
+  }
+
   public orderSelected(): void {
+    let ids = [];
+    if (ids.length > 0) {
+      ids = this.items.filter(x => x.isSelected === true);
+      this.router.navigate(['/order-form', { productsIds: ids }])
+    }
+  }
+
+  public selectItem(id: number): void {
+    let cartItem = this.items.find(x => x.id === id);
+    if (cartItem)
+      cartItem.isSelected = true;
+
+    console.log(cartItem?.isSelected);
   }
 
   reloadPage(): void {

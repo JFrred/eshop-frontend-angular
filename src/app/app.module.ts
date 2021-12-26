@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RouterModule } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
+import { OrderFormComponent } from './order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,14 @@ import { CartComponent } from './cart/cart.component';
     CategoryComponent,
     CategoryProductsComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    OrderComponent,
+    OrderFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    // BrowserAnimationsModule,
     FlexLayoutModule,
     MatButtonModule,
     MatCardModule,

@@ -14,7 +14,7 @@
 
 
         <tr *ngFor="let item of items">
-            <input type="checkbox" name="sameadr" value="item.id">
+            <input type="checkbox" name="sameadr" (click)="selectItem(item.id)">
             <th>{{item.name}}</th>
             <td>{{item.price}}</td>
             <td>{{ item.quantity }}</td>
@@ -23,6 +23,5 @@
         </tr>
 
         <button (click)="orderSelected()">order selected</button> 
-        <!-- list of ids as arg-->
     </table>
 </div>

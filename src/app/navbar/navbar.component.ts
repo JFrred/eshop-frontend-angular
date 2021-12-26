@@ -7,12 +7,16 @@ import { AuthenticationService } from '../auth/services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn!: boolean;
+  isLogged!: boolean;
 
   constructor(public authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn();
   }
 
+  public isLoggedIn(): void {
+    this.isLogged = this.authService.isUserLoggedIn();
+  }
 
 }

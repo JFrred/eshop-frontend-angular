@@ -4,6 +4,7 @@ export class CartItem {
     name: string;
     price: number;
     quantity: number;
+    isSelected: boolean;
 
     constructor(id: number, imgUrl: string, name: string, price: number, quantity: number) {
         this.id = id;
@@ -11,5 +12,6 @@ export class CartItem {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.isSelected = false;
     }
 }

@@ -1,0 +1,16 @@
+<p>order works!</p>
+<h1>Orders</h1>
+<div *ngFor="let order of orders">
+    <h3>Order info:</h3>
+    <p> seller: {{ order.sellerName }}</p>
+    <p> total order price: {{ order.totalPrice }}</p>
+    <p> order date: {{ order.date }}</p>
+    
+    <h3>Order items</h3>
+    <div *ngFor="let orderItem of order.items">
+        <p><b>product name: {{ orderItem.productName }}</b> </p>
+        <p>price: {{ orderItem.productPrice }} $</p>
+        <p>quantity: {{ orderItem.quantity }} </p>
+    </div>
+ 
+</div>
