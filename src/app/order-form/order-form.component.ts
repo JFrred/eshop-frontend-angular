@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../order/order.service';
-import { Product } from '../products/product';
-import { ProductsService } from '../products/products.service';
+import { Product } from '../models/product'; 
+import { ProductService } from '../product/product.service'; 
 
 @Component({
   selector: 'app-order-form',
@@ -14,7 +14,7 @@ export class OrderFormComponent implements OnInit {
   id!: number;
 
   constructor(private router: ActivatedRoute,
-    private productService: ProductsService,
+    private productService: ProductService,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
@@ -28,8 +28,8 @@ export class OrderFormComponent implements OnInit {
         console.log("id: " + this.id);
       });
 
-    this.productService.getById(this.id).subscribe(
-      response => {
+    this.productService.getProduct(this.id).subscribe(
+      (response: any) => {
         this.product = response;
         console.log(this.product);
       }

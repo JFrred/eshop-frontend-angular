@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="this.authService.isUserLoggedIn()">
     <p *ngIf="cart"><b>total cart price:</b> {{ cart.totalPrice }} $</p>
     <p *ngIf="items"><b>cart items count: </b>{{ items.length }}</p>
 

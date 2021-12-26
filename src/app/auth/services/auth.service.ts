@@ -21,11 +21,10 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn() {
-    
-    return this.tokenService.getUser() != null;
+    return this.tokenService.getToken() != null;
   }
 
   logOut() {
-    sessionStorage.removeItem("username");
+    this.tokenService.signOut();
   }
 }

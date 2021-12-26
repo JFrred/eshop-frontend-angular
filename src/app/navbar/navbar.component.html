@@ -4,6 +4,7 @@
   </button>
   <span class="spacer"></span>
   <button
+  *ngIf="this.authService.isUserLoggedIn()"
     mat-icon-button
     aria-label="Checkout button"
     routerLink="/cart"
@@ -11,12 +12,10 @@
     <mat-icon>shopping_cart</mat-icon>
   </button>
  
-  <div *ngIf="isLoggedIn == false">
-    <button mat-icon-button aria-label="Login button" [routerLink]="['/login']">
+    <button *ngIf="!this.authService.isUserLoggedIn()" mat-icon-button aria-label="Login button" [routerLink]="['/login']">
       <mat-icon>login</mat-icon>
     </button>
-    <button mat-icon-button aria-label="Logout button" (click)="this.authService.logOut()">
+    <button *ngIf="this.authService.isUserLoggedIn()" mat-icon-button aria-label="Logout button" (click)="this.authService.logOut()">
       <mat-icon>logout</mat-icon>
     </button>
-  </div>
 </mat-toolbar>
