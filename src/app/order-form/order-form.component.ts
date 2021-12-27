@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../order/order.service';
 import { Product } from '../models/product';
 import { ProductService } from '../product/product.service';
+import { CartService } from '../cart/cart.service';
+import { OrderFormItem } from '../order/order-form-item';
 
 @Component({
   selector: 'app-order-form',
@@ -10,11 +12,12 @@ import { ProductService } from '../product/product.service';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
-  products: Product[] = [];
+  items: OrderFormItem[] = [];
   ids!: number[] | undefined;
 
   constructor(private router: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
@@ -23,29 +26,24 @@ export class OrderFormComponent implements OnInit {
   }
 
   getIds(): void {
-    this.ids = this.router.snapshot.paramMap.get('ids')?.split(',')
-    .map(item => {
-      return parseInt(item);
-    });
+    let queryParams = this.router.snapshot.queryParamMap.get('cartItemIds');
+    if (queryParams != null) {
+      this.ids = JSON.parse(queryParams);
+    }
     console.log(this.ids);
   }
 
   public getProducts(): void {      
     if (this.ids != null) {
-      console.log("checkpoint");
-      this.ids.forEach(id => {
-        console.log("id:"  +id);
-        let product!: Product;
-        this.productService.getProduct(id).subscribe(
-          (response: Product) => {
-            this.products.push(response);
-            console.log("prod: " + product);
+      this.ids.forEach(id  => {
+        this.cartService.getItem(id).subscribe(
+          item => {
+            this.items.push(item);
           }
-        );
-        (product);
-      })
+        )
+      });
     }
-    console.log("products: " + this.products);
+    console.log("products: " + this.items);
   }
 
   public save(productId: number): void {

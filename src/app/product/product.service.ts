@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(this.url + id);
+    return this.http.get<Product>(`${this.url}/${id}`);
   }
 
   // public getProducts(ids: number[]): Observable<Product[]> {

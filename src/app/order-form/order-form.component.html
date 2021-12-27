@@ -9,9 +9,13 @@
             <b>4</b>
           </span>
         </h4>
-        <div *ngIf="products">
-          <div *ngFor="let product of products">
-            <p><a href="#">{{ product.name }} </a> <span class="price"> {{ product.price }} $$ </span></p>
+        <div *ngIf="items">
+          <div *ngFor="let item of items">
+            <p>
+              <span>{{ item.quantity }} x </span>
+              <a href="#">{{ item.name }} </a>
+              <span class="price"> {{ item.price }} $$ </span>
+            </p>
           </div>
         </div>
         <hr>

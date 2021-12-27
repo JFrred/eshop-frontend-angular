@@ -1,15 +1,15 @@
-import { OrderItem } from "./order.item";
+import { OrderFormItem } from "./order-form-item";
 
 export class OrderDetails {
     sellerName: string;
     totalPrice: number;
-    items: OrderItem[];
+    items: OrderFormItem[];
     paymentType: string;
     paymentStatus: string;
     date: Date;
 
     constructor(sellerName: string, totalPrice: number, 
-                items: OrderItem[], paymentType: string, 
+                items: OrderFormItem[], paymentType: string, 
                 paymentStatus: string,  date: Date) {
         this.sellerName = sellerName;
         this.totalPrice =totalPrice;

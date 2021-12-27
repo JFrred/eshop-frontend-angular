@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthenticationService } from '../auth/services/auth.service';
 import { Cart } from './cart';
 import { CartItem } from './cart.item';
@@ -44,7 +44,12 @@ export class CartComponent implements OnInit {
   public orderSelected(): void {
       this.ids = this.items.filter(x => x.isSelected).map(item => item.id);
       console.log("ids: " + this.ids);
-      this.router.navigate(['/order-form', { ids: this.ids }])
+      const queryParams: any = {};
+      queryParams.cartItemIds = JSON.stringify(this.ids);
+      const navigationExtras: NavigationExtras = {
+        queryParams
+      };
+      this.router.navigate(['/order-form'], navigationExtras);
   }
 
   public selectItem(id: number): void {
@@ -54,10 +59,6 @@ export class CartComponent implements OnInit {
 
     console.log(cartItem?.isSelected);
   }
-
-  // public orderCart(id: number): void {
-  //   this.router.navigate(['/order-form', { productId: id }])
-  // }
 
   reloadPage(): void {
     window.location.reload();
