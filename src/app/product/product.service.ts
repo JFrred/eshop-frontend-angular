@@ -8,7 +8,7 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  url = environment.baseUrl + "/products/";
+  url = environment.baseUrl + "/products";
 
   constructor(private http: HttpClient) { }
 
