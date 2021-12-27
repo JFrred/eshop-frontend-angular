@@ -8,8 +8,8 @@
     
     <h3>Order items</h3>
     <div *ngFor="let orderItem of order.items">
-        <p><b>product name: {{ orderItem.productName }}</b> </p>
-        <p>price: {{ orderItem.productPrice }} $</p>
+        <p><b>product name: {{ orderItem.name }}</b> </p>
+        <p>price: {{ orderItem.price }} $</p>
         <p>quantity: {{ orderItem.quantity }} </p>
     </div>
  
