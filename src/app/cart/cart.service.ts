@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { OrderFormItem as OrderFormItem } from "../order/order-form-item";
-import { Cart } from "./cart";
+import { Cart } from "../../models/cart";
 
 @Injectable({
     providedIn: 'root'

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomepageComponent } from './homepage/homepage.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -56,7 +55,7 @@ import { OrderFormComponent } from './order-form/order-form.component';
     MatSelectModule,
     MatToolbarModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     {

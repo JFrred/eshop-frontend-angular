@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AuthenticationService } from '../auth/services/auth.service';
-import { Cart } from './cart';
-import { CartItem } from './cart.item';
+import { Cart } from '../../models/cart';
+import { CartItem } from '../../models/cart.item';
 import { CartService } from './cart.service';
 
 @Component({

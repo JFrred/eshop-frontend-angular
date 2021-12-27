@@ -1,29 +1,29 @@
 <div class="row">
-  <form ng-submit="save($product.id)">
 
-    <div class="col-25">
-      <div class="container">
-        <h4>Products
-          <span class="price" style="color:black">
-            <i class="fa fa-shopping-cart"></i>
-            <b>4</b>
-          </span>
-        </h4>
-        <div *ngIf="items">
-          <div *ngFor="let item of items">
-            <p>
-              <span>{{ item.quantity }} x </span>
-              <a href="#">{{ item.name }} </a>
-              <span class="price"> {{ item.price }} $$ </span>
-            </p>
-          </div>
+  <div class="col-25">
+    <div class="container">
+      <h4>Products
+        <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i>
+          <b>4</b>
+        </span>
+      </h4>
+      <div *ngIf="items">
+        <div *ngFor="let item of items">
+          <p>
+            <span>{{ item.quantity }} x </span>
+            <a href="#">{{ item.name }} </a>
+            <span class="price"> {{ item.price }} $ </span>
+          </p>
         </div>
-        <hr>
-        <p>Total <span class="price" style="color:black"><b> </b></span></p>
       </div>
+      <hr>
+      <p>Total <span class="price" style="color:black"><b>{{ totalPrice }} $</b></span></p>
     </div>
+  </div>
 
-    <div class="col-75">
+  <div class="col-75">
+    <form #checkOutForm="ngForm" (ngSubmit)="save(checkOutForm.value)" novalidate> 
       <div class="container">
 
         <div class="row">
@@ -41,7 +41,7 @@
             <div class="row">
               <div class="col-50">
                 <label for="zip">Postal code</label>
-                <input type="text" id="zip" name="zip" placeholder="xx-xxx">
+                <input type="text" id="zip" name="postalCode" placeholder="xx-xxx">
               </div>
             </div>
           </div>
@@ -51,9 +51,12 @@
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
       </div>
-    </div>
-    <button type="submit">buy</button>
-  </form>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Place Order" />
+      </div>
+  
+    </form>
+  </div>
 
 
 </div>
