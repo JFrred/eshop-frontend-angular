@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,7 @@ import { AuthenticationService } from '../services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  errors!: any;
   hide = true;
   form!: FormGroup;
   loading = false;
@@ -37,18 +39,31 @@ export class SignupComponent implements OnInit {
   //todo: after successfull registration redirect user to confirm email page and wait for confirmation
   signup(): void {
     this.submitted = true;
-    if (this.form.invalid) {
-      return;
-    }
+    // if (this.form.invalid) {
+    //   return;
+    // }
     this.loading = true;
 
+    // let request = new SignupRequest(
+    //   this.form.username,
+    //   this.form.value.password,
+    //   this.form.value.confirmPassword,
+    //   this.form.value.firstName,
+    //   this.form.value.lastName,
+    //   this.form.value.em,
+    //   this.form.value.,
+    //   this.form.value.username,
+    //   );
+
+    console.log("form: " + this.form.value.username);
     this.authService.register(this.form.value)
-    .subscribe(
-      reponse => {
-        this.router.navigate(['/confirm-email']); // loading = true ??
-      },
-      error => console.log(error)
-    );
+    .pipe(first())
+      .subscribe(
+        response => {
+          this.router.navigate(['/confirm-email']); // loading = true ??
+        },
+        error => this.errors = error
+      );
 
   }
 

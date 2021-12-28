@@ -34,7 +34,9 @@ export class AuthenticationService {
   }
 
   register(signupRequest: SignupRequest): Observable<any> {
-    return this.http.post(
+    console.log("request: " + signupRequest);
+
+    return this.http.post<any>(
       `${this.url}/perform_signup`,
       signupRequest,
       httpOptions);
