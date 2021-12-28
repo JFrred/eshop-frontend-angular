@@ -20,7 +20,7 @@ import { CategoryComponent } from './category/category.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { BasicAuthHtppInterceptorService } from './auth/services/auth.interceptor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RouterModule } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
@@ -56,6 +56,7 @@ import { OrderFormComponent } from './order-form/order-form.component';
     MatToolbarModule,
     HttpClientModule,
     RouterModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

@@ -1,4 +1,4 @@
-import { OrderFormItem } from "../order/order-form-item";
+import { OrderFormItem } from "src/models/order-form-item";
 
 export class OrderDetails {
     sellerName: string;
