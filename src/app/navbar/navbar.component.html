@@ -12,10 +12,22 @@
     <mat-icon>shopping_cart</mat-icon>
   </button>
  
-    <button *ngIf="!this.authService.isUserLoggedIn()" mat-icon-button aria-label="Login button" [routerLink]="['/login']">
+    <button *ngIf="!this.authService.isUserLoggedIn()"
+     mat-icon-button aria-label="Login button" 
+     [routerLink]="['/login']">
       <mat-icon>login</mat-icon>
     </button>
-    <button *ngIf="this.authService.isUserLoggedIn()" mat-icon-button aria-label="Logout button" (click)="this.authService.logOut()">
+
+    <button *ngIf="!this.authService.isUserLoggedIn()" 
+    mat-icon-button aria-label="signup button" 
+    [routerLink]="['/signup']">
+      <mat-icon>supervisor_account</mat-icon>
+    </button>
+
+    <button *ngIf="this.authService.isUserLoggedIn()" 
+    mat-icon-button aria-label="Logout button" 
+    (click)="this.authService.logOut()"
+    [routerLink]="['/']">
       <mat-icon>logout</mat-icon>
     </button>
 </mat-toolbar>

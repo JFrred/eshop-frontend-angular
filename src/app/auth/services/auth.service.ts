@@ -1,22 +1,27 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AuthResponse } from "../login/auth.response";
 import { TokenStorageService } from "./token-storage.service";
+import { environment } from "src/environments/environment";
+import { Observable } from "rxjs";
+import { SignupRequest } from "../signup/signup.request";
 
-export class User {
-  constructor(public status: string) { }
-}
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient,
+  url = environment.baseUrl + "/auth";
+
+  constructor(private http: HttpClient,
     private tokenService: TokenStorageService) { }
 
   authenticate(username: string, password: string) {
-    return this.httpClient
-      .post<AuthResponse>("http://localhost:8080/auth/perform_login",
+    return this.http
+      .post<AuthResponse>(`${this.url}/perform_login`,
         { username, password });
   }
 
@@ -26,5 +31,12 @@ export class AuthenticationService {
 
   logOut() {
     this.tokenService.signOut();
+  }
+
+  register(signupRequest: SignupRequest): Observable<any> {
+    return this.http.post(
+      `${this.url}/perform_signup`,
+      signupRequest,
+      httpOptions);
   }
 }

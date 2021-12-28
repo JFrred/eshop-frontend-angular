@@ -3,7 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { AuthenticationService } from '../auth/services/auth.service';
 import { Cart } from '../../models/cart';
 import { CartItem } from '../../models/cart.item';
-import { CartService } from './cart.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',

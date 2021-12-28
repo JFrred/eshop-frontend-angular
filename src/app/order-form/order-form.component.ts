@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../order/order.service';
-import { CartService } from '../cart/cart.service';
+import { OrderService } from '../services/order.service';
+import { CartService } from '../services/cart.service';
 import { OrderFormItem } from 'src/models/order-form-item'; 
 import { OrderBillingAddress } from '../models/order-billing-address';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
