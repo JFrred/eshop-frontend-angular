@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
 import { CartService } from '../services/cart.service';
-import { OrderFormItem } from 'src/models/order-form-item'; 
 import { OrderBillingAddress } from '../models/order-billing-address';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartItem } from 'src/models/cart.item';
@@ -60,21 +59,20 @@ export class OrderFormComponent implements OnInit {
   }
 
   public placeOrder(): void {
-    // if (this.form.invalid) {
-    //   return;
-    // }
     console.log(this.form.value);
     console.log(this.items);
 
     for (let item of this.items) {
       console.log("id: " + item.id);
-     }
+    }
+
+    let responseMessage!: string;
 
     this.orderService.save(this.items, this.form.value)
-      // .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/']);
+          responseMessage = data;
+          this.router.navigate(['/'], { queryParams: { message: responseMessage } });
         },
         error => {
           console.log(error);

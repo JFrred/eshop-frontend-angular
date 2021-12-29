@@ -26,7 +26,4 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  public orderNow(productId: number, quantity: number, paymentType: string): void {
-    this.orderService.orderOne(productId, quantity, paymentType);
-  }
 }

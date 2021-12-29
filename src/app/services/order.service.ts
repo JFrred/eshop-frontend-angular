@@ -37,7 +37,7 @@ export class OrderService {
                 "quantity": quantity,
                 "paymentType": paymentType
             }
-        }); //todo: reponseType!!
+        });
     }
 
     public save(items: CartItem[], billingAddress: OrderBillingAddress): Observable<any> {
@@ -58,7 +58,8 @@ export class OrderService {
         let orderRequest = new OrderRequest(orderItems, paymentType);
 
         return this.http.post<any>(this.url,
-            orderRequest
-        ); //todo: reponseType!!
+            orderRequest,
+            { responseType: 'text' as 'json' }
+        );
     }
 }

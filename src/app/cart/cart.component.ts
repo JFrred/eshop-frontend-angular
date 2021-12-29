@@ -11,6 +11,7 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  isEmpty: boolean = true;
   cart!: Cart;
   items!: CartItem[];
   ids!: number[];
@@ -29,8 +30,11 @@ export class CartComponent implements OnInit {
         this.cart = response;
         this.items = response.items;
 
+        if (this.items.length > 0) {
+          this.isEmpty = false
+        }
         console.log(response);
-        console.log("items: " + this.items[0]);
+        console.log("items: " + this.items.length);
       }
     )
   }
@@ -40,16 +44,16 @@ export class CartComponent implements OnInit {
     this.cartService.remove(id, 1).subscribe();
     this.reloadPage();
   }
-  
+
   public orderSelected(): void {
-      this.ids = this.items.filter(x => x.isSelected).map(item => item.id);
-      console.log("ids: " + this.ids);
-      const queryParams: any = {};
-      queryParams.cartItemIds = JSON.stringify(this.ids);
-      const navigationExtras: NavigationExtras = {
-        queryParams
-      };
-      this.router.navigate(['/order-form'], navigationExtras);
+    this.ids = this.items.filter(x => x.isSelected).map(item => item.id);
+    console.log("ids: " + this.ids);
+    const queryParams: any = {};
+    queryParams.cartItemIds = JSON.stringify(this.ids);
+    const navigationExtras: NavigationExtras = {
+      queryParams
+    };
+    this.router.navigate(['/order-form'], navigationExtras);
   }
 
   public selectItem(id: number): void {
