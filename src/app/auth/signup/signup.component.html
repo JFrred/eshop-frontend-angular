@@ -1,6 +1,6 @@
 <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="signup()" class="my-form">
-
+       
         <mat-form-field class="full-width">
             <div>
                 <mat-label>Username
@@ -11,9 +11,10 @@
                 <div *ngIf="f['username'].errors.required">Username is required</div>
             </div>
             <div>
-                <mat-error *ngIf="f['username'].errors?.serverError">
+                <!-- server side validation error message -->
+                <mat-error *ngIf="submitted && f['username'].errors?.serverError">
                     {{ f['username'].errors?.serverError }}
-                  </mat-error>
+                </mat-error>
             </div>
         </mat-form-field>
 
@@ -26,19 +27,25 @@
                 <div *ngIf="f['password'].errors.required">Password is required</div>
             </div>
             <div>
-                <mat-error *ngIf="f['password'].errors?.serverError">
+                <mat-error *ngIf="submitted &&  f['password'].errors?.serverError">
                     {{ f['password'].errors?.serverError }}
-                  </mat-error>
+                </mat-error>
             </div>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <div>
                 <mat-label>Repeat password</mat-label>
-                <input type="password" matInput placeholder="repeat password" formControlName="confirmPassword" required>
+                <input type="password" matInput placeholder="repeat password" formControlName="confirmPassword"
+                    required>
             </div>
             <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
                 <div *ngIf="f['confirmPassword'].errors.required">Password is required</div>
+            </div>
+            <div>
+                <mat-error *ngIf="submitted && f['confirmPassword'].errors?.serverError">
+                    {{ f['confirmPassword'].errors?.serverError }}
+                </mat-error>
             </div>
         </mat-form-field>
 
@@ -70,16 +77,27 @@
             <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                 <div *ngIf="f['email'].errors.required">Email is required</div>
             </div>
+            <div>
+                <mat-error *ngIf="submitted &&  f['email'].errors?.serverError">
+                    {{ f['email'].errors?.serverError }}
+                </mat-error>
+            </div>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <div>
                 <mat-label>Account number</mat-label>
 
-                <input matInput placeholder="_ _ _ _ - _ _ _ _ - _ _ _ _ - _ _ _ _" formControlName="accountNumber" required>
+                <input matInput placeholder="_ _ _ _ - _ _ _ _ - _ _ _ _ - _ _ _ _" formControlName="accountNumber"
+                    required>
             </div>
             <div *ngIf="submitted && f['accountNumber'].errors" class="invalid-feedback">
                 <div *ngIf="f['accountNumber'].errors.required">Account number is required</div>
+            </div>
+            <div>
+                <mat-error *ngIf="submitted &&  f['accountNumber'].errors?.serverError">
+                    {{ f['accountNumber'].errors?.serverError }}
+                </mat-error>
             </div>
         </mat-form-field>
 
@@ -114,7 +132,7 @@
         </mat-form-field>
 
         <div class="form-group">
-            <button  class="btn btn-primary">
+            <button [disabled]="loading" class="btn btn-primary">
                 <span class="spinner-border spinner-border-sm mr-1"></span>
                 Register
             </button>

@@ -38,12 +38,12 @@ export class AuthenticationService {
 
     return this.http.post<any>(
       `${this.url}/perform_signup`,
-      signupRequest,
-      httpOptions);
+      signupRequest);
   }
 
   activateAccount(token: string): Observable<any> {
     return this.http.post<any>(
-      `${this.url}/account-verification?token=${token}`, null);
+      `${this.url}/account-verification?token=${token}`,
+      null);
   }
 }

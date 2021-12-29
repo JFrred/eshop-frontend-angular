@@ -11,20 +11,16 @@ export class AccountActivationComponent implements OnInit {
 
   constructor( private router: Router,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    // const id = Number(this.router.snapshot.paramMap.get('id'));
-
     this.activatedRoute.queryParams.subscribe(
       (params: any) => {
         let token = params['token'];
-        console.log(token); 
+        console.log("token: " + token); 
 
-        this.authService.activateAccount(token).subscribe(
-        );
-        // this.router.navigate(['/login']);
-        console.log("activated");
+        this.authService.activateAccount(token).subscribe();
+        console.log("account has been activated");
       });
   }
 

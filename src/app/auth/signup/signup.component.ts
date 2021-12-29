@@ -1,8 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/auth.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +10,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  errors!: any;
+  errorMessage!: string;
   hide = true;
   form!: FormGroup;
   loading = false;
@@ -18,7 +18,6 @@ export class SignupComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -36,7 +35,6 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  //todo: after successfull registration redirect user to confirm email page and wait for confirmation
   signup(): void {
     this.submitted = true;
     if (this.form.invalid) {
@@ -44,16 +42,39 @@ export class SignupComponent implements OnInit {
     }
     this.loading = true;
 
-    console.log("form: " + this.form.value.username);
+
+    //todo: show server side validation exception message
     this.authService.register(this.form.value)
       .subscribe(
         response => {
-          console.log(response.vlaue);
-         // loading = true ??
+          console.log(response.message);
         },
-        error => this.errors = error
+        error => {
+          this.errorMessage = error.message;
+          
+          console.log("msg: " + error.message); 
+          console.log("msg.val: " + error.message.value); 
+          if (error instanceof HttpErrorResponse) {
+            if (error.error instanceof ErrorEvent) {
+              console.error("Error Event");
+            } else {
+              console.log(`error status : ${error.status} ${error.statusText}`);
+              switch (error.status) {
+                case 422:      //login
+                  this.router.navigateByUrl("/signup");
+                  break;
+              }
+            }
+          } else {
+            console.error("some thing else happened");
+          }
+        }
       );
-      this.router.navigate(['/login']); 
+
+    if (this.errorMessage != null) {
+      this.router.navigate(['/register']);
+    }
+    this.router.navigate(['/login']);
   }
 
   get f() { return this.form.controls; }
