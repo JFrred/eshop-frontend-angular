@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountActivationComponent } from './auth/account-activation/account-activation.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CartComponent } from './cart/cart.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: "order-form",
     component: OrderFormComponent
+  },
+  {
+    path: "account-verification",
+    component: AccountActivationComponent
   },
   {
     path:

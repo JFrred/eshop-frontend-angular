@@ -33,7 +33,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountActivationComponent } from './auth/account-activation/account-activation.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     CartComponent,
     OrderComponent,
     OrderFormComponent,
-    SignupComponent
+    SignupComponent,
+    AccountActivationComponent
   ],
   imports: [
     BrowserModule,

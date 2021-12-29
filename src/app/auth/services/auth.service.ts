@@ -41,4 +41,9 @@ export class AuthenticationService {
       signupRequest,
       httpOptions);
   }
+
+  activateAccount(token: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.url}/account-verification?token=${token}`, null);
+  }
 }

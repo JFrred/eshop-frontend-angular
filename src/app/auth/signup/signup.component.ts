@@ -39,32 +39,21 @@ export class SignupComponent implements OnInit {
   //todo: after successfull registration redirect user to confirm email page and wait for confirmation
   signup(): void {
     this.submitted = true;
-    // if (this.form.invalid) {
-    //   return;
-    // }
+    if (this.form.invalid) {
+      return;
+    }
     this.loading = true;
-
-    // let request = new SignupRequest(
-    //   this.form.username,
-    //   this.form.value.password,
-    //   this.form.value.confirmPassword,
-    //   this.form.value.firstName,
-    //   this.form.value.lastName,
-    //   this.form.value.em,
-    //   this.form.value.,
-    //   this.form.value.username,
-    //   );
 
     console.log("form: " + this.form.value.username);
     this.authService.register(this.form.value)
-    .pipe(first())
       .subscribe(
         response => {
-          this.router.navigate(['/confirm-email']); // loading = true ??
+          console.log(response.vlaue);
+         // loading = true ??
         },
         error => this.errors = error
       );
-
+      this.router.navigate(['/login']); 
   }
 
   get f() { return this.form.controls; }

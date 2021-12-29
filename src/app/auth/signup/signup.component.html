@@ -10,6 +10,11 @@
             <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
                 <div *ngIf="f['username'].errors.required">Username is required</div>
             </div>
+            <div>
+                <mat-error *ngIf="f['username'].errors?.serverError">
+                    {{ f['username'].errors?.serverError }}
+                  </mat-error>
+            </div>
         </mat-form-field>
 
         <mat-form-field class="full-width">
@@ -19,6 +24,11 @@
             </div>
             <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 <div *ngIf="f['password'].errors.required">Password is required</div>
+            </div>
+            <div>
+                <mat-error *ngIf="f['password'].errors?.serverError">
+                    {{ f['password'].errors?.serverError }}
+                  </mat-error>
             </div>
         </mat-form-field>
 
@@ -102,19 +112,14 @@
                 <div *ngIf="f['postalCode'].errors.required">Postal code is required</div>
             </div>
         </mat-form-field>
-<!-- 
+
         <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <button  class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm mr-1"></span>
                 Register
             </button>
-            <a routerLink="/login" class="btn btn-link">Cancel</a>
-        </div> -->
-
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="sign up" />
+            <a [routerLink]="['/']" class="btn btn-link">Cancel</a>
         </div>
-
 
     </form>
 </mat-card-content>
