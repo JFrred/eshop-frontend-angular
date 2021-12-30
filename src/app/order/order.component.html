@@ -1,4 +1,23 @@
-<p>order works!</p>
+<div *ngFor="let order of orders">
+    <mat-card *ngIf="order != null" class="product-card" >
+        <!-- <mat-card-title>{{ order?. }}</mat-card-title> -->
+        <span>total: {{order?.totalPrice}}$</span> <br>
+        <span>date: {{order?.date}}</span>
+    </mat-card>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p>order works!</p>
 <h1>Orders</h1>
 <div *ngFor="let order of orders">
     <h3>Order info:</h3>
@@ -13,4 +32,4 @@
         <p>quantity: {{ orderItem.quantity }} </p>
     </div>
  
-</div>
+</div> -->

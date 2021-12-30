@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OrderDetails } from '../models/order.details';
 import { OrderService } from '../services/order.service';
 
@@ -18,11 +18,11 @@ export class OrderComponent implements OnInit {
 
   public getAllOrders(): void {
     this.orderService.getAll().subscribe(
-      (response: OrderDetails[]) => {
+      response => {
         this.orders = response;
         console.log("orders: " + this.orders);
       },
-      (error: Error) => console.log(error)
+      error => console.log(error)
     );
   }
 

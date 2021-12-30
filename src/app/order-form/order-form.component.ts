@@ -12,6 +12,7 @@ import { CartItem } from 'src/models/cart.item';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
+  submitted: boolean = false;
   form!: FormGroup;
   items: CartItem[] = [];
   ids!: number[] | undefined;
@@ -59,8 +60,12 @@ export class OrderFormComponent implements OnInit {
   }
 
   public placeOrder(): void {
+    this.submitted = true;
     console.log(this.form.value);
     console.log(this.items);
+
+    if (this.form.invalid)
+      return;
 
     for (let item of this.items) {
       console.log("id: " + item.id);
@@ -82,5 +87,9 @@ export class OrderFormComponent implements OnInit {
 
   public buyNow(id: number, quantity: number, paymentType: string): void {
     this.orderService.saveOne(id, quantity, paymentType).subscribe();
+  }
+
+  get f() {
+    return this.form.controls;
   }
 }
