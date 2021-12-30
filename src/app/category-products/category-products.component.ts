@@ -11,7 +11,7 @@ import { ProductService } from '../services/product.service';
 export class CategoryProductsComponent implements OnInit {
   products!: Product[];
 
-  constructor(private route: ActivatedRoute,
+  constructor(private activatedRoute: ActivatedRoute,
     private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class CategoryProductsComponent implements OnInit {
   }
 
   public getProducts() {
-    const category = String(this.route.snapshot.paramMap.get('name'));
+    const category = String(this.activatedRoute.snapshot.paramMap.get('name'));
     console.log(category);
     this.productService.getProductsByCategory(category).subscribe(
       (data: any) => {

@@ -26,6 +26,7 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn() {
+    console.log("is logged");
     return this.tokenService.getToken() != null;
   }
 
@@ -45,5 +46,9 @@ export class AuthenticationService {
     return this.http.post<any>(
       `${this.url}/account-verification?token=${token}`,
       null);
+  }
+
+  isAdmin(): Observable<any> {
+    return this.http.get<any>(`${this.url}/user/role`);
   }
 }

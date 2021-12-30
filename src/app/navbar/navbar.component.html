@@ -3,31 +3,37 @@
     <mat-icon>home</mat-icon>
   </button>
   <span class="spacer"></span>
-  <button
-  *ngIf="this.authService.isUserLoggedIn()"
-    mat-icon-button
-    aria-label="Checkout button"
-    routerLink="/cart"
-  >
+
+  <button *ngIf="this.isLogged && !isAdmin" mat-icon-button aria-label="Checkout button" routerLink="/cart">
     <mat-icon>shopping_cart</mat-icon>
   </button>
- 
-    <button *ngIf="!this.authService.isUserLoggedIn()"
-     mat-icon-button aria-label="Login button" 
-     [routerLink]="['/login']">
-      <mat-icon>login</mat-icon>
-    </button>
 
-    <button *ngIf="!this.authService.isUserLoggedIn()" 
-    mat-icon-button aria-label="signup button" 
+  <button *ngIf="this.isLogged" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="this.isAdmin" mat-menu-item [routerLink]="['/products-mgmt']">
+      <mat-icon>dialpad</mat-icon>
+      <span>manage</span>
+    </button>
+    <button *ngIf="!this.isAdmin" mat-menu-item [routerLink]="['/orders']">
+      <mat-icon>dialpad</mat-icon>
+      <span>my orders</span>
+    </button>
+  </mat-menu>
+
+  <button *ngIf="!this.isLogged" mat-icon-button aria-label="Login button"
+    [routerLink]="['/login']">
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <button *ngIf="!this.isLogged" mat-icon-button aria-label="signup button"
     [routerLink]="['/signup']">
-      <mat-icon>supervisor_account</mat-icon>
-    </button>
+    <mat-icon>supervisor_account</mat-icon>
+  </button>
 
-    <button *ngIf="this.authService.isUserLoggedIn()" 
-    mat-icon-button aria-label="Logout button" 
-    (click)="this.authService.logOut()"
-    [routerLink]="['/']">
-      <mat-icon>logout</mat-icon>
-    </button>
+  <button *ngIf="this.isLogged" mat-icon-button aria-label="Logout button"
+    (click)="this.authService.logOut()" [routerLink]="['/']">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>

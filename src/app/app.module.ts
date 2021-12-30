@@ -33,8 +33,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccountActivationComponent } from './auth/account-activation/account-activation.component'
+import { AccountActivationComponent } from './auth/account-activation/account-activation.component';
+import { ProductMgmtComponent } from './product-mgmt/product-mgmt.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +56,9 @@ import { AccountActivationComponent } from './auth/account-activation/account-ac
     OrderComponent,
     OrderFormComponent,
     SignupComponent,
-    AccountActivationComponent
+    AccountActivationComponent,
+    ProductMgmtComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +78,8 @@ import { AccountActivationComponent } from './auth/account-activation/account-ac
     MatNativeDateModule,
     MatInputModule,
     MatIconModule,
+    MatMenuModule,
+    MatListModule,
 
     HttpClientModule,
     RouterModule,

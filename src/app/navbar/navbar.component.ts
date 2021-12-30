@@ -9,16 +9,30 @@ import { AuthenticationService } from '../auth/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isLogged!: boolean;
+  isAdmin!: boolean;
 
   constructor(public authService: AuthenticationService,
-    private router: Router) { }
-
-  ngOnInit(): void {
-    this.isLoggedIn();
+    private router: Router) {
+    this.authService.isAdmin();
+    this.isLogged = this.authService.isUserLoggedIn();
   }
 
-  public isLoggedIn(): void {
-    this.isLogged = this.authService.isUserLoggedIn();
+  ngOnInit(): void {
+    this.isUserAdmin();
+  }
+
+  // public isLoggedIn(): void {
+  //   this.isLogged = this.authService.isUserLoggedIn();
+  // }
+
+  //todo: admin board -> product mgmt 
+  public isUserAdmin(): void {
+    this.authService.isAdmin().subscribe(
+      response => {
+        this.isAdmin = response;
+        console.log("admin: " + this.isAdmin);
+      }
+    );
   }
 
   public logOut(): void {

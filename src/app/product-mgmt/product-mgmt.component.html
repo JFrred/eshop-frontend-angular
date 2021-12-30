@@ -1,0 +1,32 @@
+<p>product-mgmt works!</p>
+
+<h2 *ngIf="message"> {{ message }} </h2>
+<div class="container">
+    <mat-list>
+        <mat-list-item *ngFor="let product of products">
+            <img mat-card-image [src]="product.imgUrl" matListAvatar alt="">
+            <div matLine>{{ product.name }}</div>
+            <div matLine>price: {{ product.price }}</div>
+            <div matLine>category : {{ product.category }}</div>
+            <div matLine>{{ product.description }}</div>
+            <div matLine>{{ product.lastModified.split('.')[0] }}</div>
+
+            <div>
+                <button class="icon-red" mat-icon-button aria-label="delete button" (click)="delete(product.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
+            <div>
+                <button mat-icon-button aria-label="delete button" (onclick)="delete(product.id)">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+            </div>
+            <div>
+                <button class="icon-green" mat-icon-button aria-label="delete button" (onclick)="delete(product.id)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>
