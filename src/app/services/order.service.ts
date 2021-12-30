@@ -20,6 +20,10 @@ export class OrderService {
         return this.http.get<OrderDetails[]>(this.url);
     }
 
+    public get(id: number): Observable<OrderDetails> {
+        return this.http.get<OrderDetails>(`${this.url}/${id}`);
+    }
+
     public orderOne(productId: number, quantity: number, paymentType: string): Observable<string> {
         return this.http.post(this.url, {
             body: {
