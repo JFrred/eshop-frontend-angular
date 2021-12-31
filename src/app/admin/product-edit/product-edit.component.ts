@@ -45,8 +45,6 @@ export class ProductEditComponent implements OnInit {
       },
       error => console.log(error)
     );
-   
-
   }
 
   public edit(): void {
@@ -57,3 +55,4 @@ export class ProductEditComponent implements OnInit {
   get f() { return this.editForm.controls; }
 
 }
+
