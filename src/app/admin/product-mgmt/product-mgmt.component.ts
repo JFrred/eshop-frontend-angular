@@ -28,16 +28,6 @@ export class ProductMgmtComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(
-      param => {
-        this.message = param['message'];
-        if (this.message) {
-          console.log("mgmt message: " + this.message);
-        }
-      },
-      error => console.log(error)
-    );
-
     this.getProducts();
   }
 
@@ -64,6 +54,11 @@ export class ProductMgmtComponent implements OnInit {
       this.reloadPage();
 
     }
+  }
+
+  public refresh(id: number): void {
+    this.productMgmtService.refreshDate(id).subscribe();
+    this.reloadPage();
   }
 
   reloadPage(): void {
