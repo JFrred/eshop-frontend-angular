@@ -6,10 +6,6 @@ import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
 import { SignupRequest } from "../signup/signup.request";
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({
   providedIn: "root"
 })
@@ -48,7 +44,7 @@ export class AuthenticationService {
       null);
   }
 
-  isAdmin(): Observable<any> {
-    return this.http.get<any>(`${this.url}/user/role`);
+  getUserRole(): Observable<any> {
+    return this.http.get<any>(`${this.url}/user/role`,  {responseType: 'text' as 'json'});
   }
 }

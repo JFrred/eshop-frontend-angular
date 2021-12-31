@@ -12,6 +12,7 @@ import { OrderComponent } from './order/order.component';
 import { ProductMgmtComponent } from './admin/product-mgmt/product-mgmt.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ProductSaveComponent } from './admin/product-save/product-save.component';
+import { ProductEditComponent } from './admin/product-edit/product-edit.component';
 
 const routes: Routes = [
   {
@@ -27,8 +28,16 @@ const routes: Routes = [
     component: ProductPageComponent
   },
   {
-    path: "admin",
+    path: "admin/products",
     component: ProductMgmtComponent
+  },
+  {
+    path: "admin/products/add",
+    component: ProductSaveComponent
+  },
+  {
+    path: "admin/products/edit/:id",
+    component: ProductEditComponent
   },
   {
     path: "category/:name",

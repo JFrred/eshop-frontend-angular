@@ -21,8 +21,6 @@ export class ProductEditComponent implements OnInit {
   imgUrl!: string;
   price!: number;
 
-  testMessage: string = "ahoj";
-
   constructor(private formBuilder: FormBuilder,
     private productService: ProductService,
     private productMgmtService: ProductMgmtService,
@@ -33,18 +31,19 @@ export class ProductEditComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
 
     this.productService.getProduct(this.id)
-    .subscribe(
-      data => {
-        this.editForm = this.formBuilder.group({
-          name: data.name,
-          description: data.description,
-          category: data.category,
-          imgUrl: data.imgUrl,
-          price: data.price,
-        });
-      },
-      error => console.log(error)
-    );
+      .subscribe(
+        data => {
+          console.log("name: " + data.name);
+          this.editForm = this.formBuilder.group({
+            name: data.name,
+            description: data.description,
+            category: data.category,
+            imgUrl: data.imgUrl,
+            price: data.price,
+          });
+        },
+        error => console.log(error)
+      );
   }
 
   public edit(): void {

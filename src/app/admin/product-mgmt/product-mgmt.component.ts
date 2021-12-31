@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { Product } from 'src/app/models/product';
 import { ProductMgmtService } from '../services/product-mgmt-service';
 
@@ -10,8 +11,7 @@ import { ProductMgmtService } from '../services/product-mgmt-service';
   styleUrls: ['./product-mgmt.component.scss']
 })
 export class ProductMgmtComponent implements OnInit {
-  name!: string;
-  animal!: string;
+  isAdmin!: boolean;
 
   products!: Product[];
   message!: string;
@@ -23,11 +23,17 @@ export class ProductMgmtComponent implements OnInit {
 
 
   constructor(private productMgmtService: ProductMgmtService,
+    private authService: AuthenticationService,
+    private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.message = this.activatedRoute.snapshot.params['message'];
+    this.authService.getUserRole().subscribe(
+      response => this.isAdmin = response == "ADMIN",
+      error => console.log(error)
+    );
   }
 
   ngOnInit(): void {
+ 
     this.getProducts();
   }
 

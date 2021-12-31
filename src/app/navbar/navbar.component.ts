@@ -13,21 +13,22 @@ export class NavbarComponent implements OnInit {
 
   constructor(public authService: AuthenticationService,
     private router: Router) {
-    this.authService.isAdmin();
     this.isLogged = this.authService.isUserLoggedIn();
   }
 
   ngOnInit(): void {
     this.isUserAdmin();
+    console.log("admin: " + this.isAdmin);
   }
 
   public isUserAdmin(): void {
     if (this.isLogged) {
-      this.authService.isAdmin().subscribe(
+      this.authService.getUserRole().subscribe(
         response => {
-          this.isAdmin = response;
+          this.isAdmin = response == "ADMIN";
           console.log("admin: " + this.isAdmin);
-        }
+        },
+        error => console.log(error)
       );
     }
   }
