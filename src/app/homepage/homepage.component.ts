@@ -11,7 +11,8 @@ export class HomepageComponent implements OnInit{
   subtitle = 'What are you looking for?';
   message!: string ;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(

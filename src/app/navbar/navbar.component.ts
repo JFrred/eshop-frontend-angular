@@ -21,18 +21,15 @@ export class NavbarComponent implements OnInit {
     this.isUserAdmin();
   }
 
-  // public isLoggedIn(): void {
-  //   this.isLogged = this.authService.isUserLoggedIn();
-  // }
-
-  //todo: admin board -> product mgmt 
   public isUserAdmin(): void {
-    this.authService.isAdmin().subscribe(
-      response => {
-        this.isAdmin = response;
-        console.log("admin: " + this.isAdmin);
-      }
-    );
+    if (this.isLogged) {
+      this.authService.isAdmin().subscribe(
+        response => {
+          this.isAdmin = response;
+          console.log("admin: " + this.isAdmin);
+        }
+      );
+    }
   }
 
   public logOut(): void {

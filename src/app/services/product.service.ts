@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
+import { ProductSaveRequest } from '../admin/dto/product-save-request';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +33,6 @@ export class ProductService {
       .append("size", "2");
     console.log(category);
     return this.http.get<Product>(this.url + "/categories/" + category, { params: params });
-  }
-
-  delete(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.mgmtUrl}/${id}`);
   }
 
 }

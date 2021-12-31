@@ -1,0 +1,64 @@
+<h1>Product save form</h1>
+<mat-card-content>
+
+    <form [formGroup]="saveForm" (ngSubmit)="save()" class="my-form">
+        <mat-form-field class="full-width">
+            <div>
+                <mat-label>Product name
+                    <input matInput placeholder="name" formControlName="name" required>
+                </mat-label>
+            </div>
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="f['name'].errors.required">Product name is required</div>
+            </div>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <div>
+                <mat-label>description
+                    <input matInput placeholder="description" formControlName="description" required>
+                </mat-label>
+            </div>
+            <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                <div *ngIf="f['description'].errors.required">Description is required</div>
+            </div>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <div>
+                <mat-label>category
+                    <input matInput placeholder="category" formControlName="category" required>
+                </mat-label>
+            </div>
+            <div *ngIf="submitted && f['category'].errors" class="invalid-feedback">
+                <div *ngIf="f['category'].errors.required">Category is required</div>
+            </div>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <div>
+                <mat-label>Image url
+                    <input matInput placeholder="imgUrl" formControlName="imgUrl" required>
+                </mat-label>
+            </div>
+            <div *ngIf="submitted && f['imgUrl'].errors" class="invalid-feedback">
+                <div *ngIf="f['imgUrl'].errors.required">Image is required</div>
+            </div>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <div>
+                <mat-label>Product name
+                    <input matInput placeholder="price" formControlName="price" required>
+                </mat-label>
+            </div>
+            <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                <div *ngIf="f['price'].errors.required">Price is required</div>
+            </div>
+        </mat-form-field>
+
+        <div class="form-group">
+            <button class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+                Add
+            </button>
+            <a [routerLink]="['/admin']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+</mat-card-content>

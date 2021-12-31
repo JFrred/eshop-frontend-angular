@@ -51,16 +51,14 @@ export class SignupComponent implements OnInit {
         },
         error => {
           this.errorMessage = error.message;
-          
-          console.log("msg: " + error.message); 
-          console.log("msg.val: " + error.message.value); 
+
           if (error instanceof HttpErrorResponse) {
             if (error.error instanceof ErrorEvent) {
               console.error("Error Event");
             } else {
               console.log(`error status : ${error.status} ${error.statusText}`);
               switch (error.status) {
-                case 422:      //login
+                case 422:      
                   this.router.navigateByUrl("/signup");
                   break;
               }

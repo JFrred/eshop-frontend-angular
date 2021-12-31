@@ -1,5 +1,3 @@
-<p>product-mgmt works!</p>
-
 <h2 *ngIf="message"> {{ message }} </h2>
 <div class="container">
     <mat-list>
@@ -29,4 +27,5 @@
             </div>
         </mat-list-item>
     </mat-list>
+    <button mat-raised-button [routerLink]="['/admin/products/save']">Add new product</button>
 </div>

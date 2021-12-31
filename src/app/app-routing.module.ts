@@ -9,8 +9,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderComponent } from './order/order.component';
-import { ProductMgmtComponent } from './product-mgmt/product-mgmt.component';
+import { ProductMgmtComponent } from './admin/product-mgmt/product-mgmt.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { ProductSaveComponent } from './admin/product-save/product-save.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
     component: ProductPageComponent
   },
   {
-    path: "products-mgmt",
+    path: "admin",
     component: ProductMgmtComponent
   },
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: "account-verification",
     component: AccountActivationComponent
+  },
+  {
+    path:"admin/products/save",
+    component: ProductSaveComponent
   },
   {
     path:

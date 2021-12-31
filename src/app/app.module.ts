@@ -36,9 +36,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountActivationComponent } from './auth/account-activation/account-activation.component';
-import { ProductMgmtComponent } from './product-mgmt/product-mgmt.component';
+import { ProductMgmtComponent } from './admin/product-mgmt/product-mgmt.component'; 
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MatListModule } from '@angular/material/list';
+import { ProductSaveComponent } from './admin/product-save/product-save.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { MatListModule } from '@angular/material/list';
     SignupComponent,
     AccountActivationComponent,
     ProductMgmtComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    ProductSaveComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { AuthenticationService } from '../auth/services/auth.service';
   styleUrls: ['./product-page.component.scss'],
 })
 export class ProductPageComponent implements OnInit {
+  isLogged!: boolean;
   product!: Product;
 
   constructor(
@@ -18,10 +19,12 @@ export class ProductPageComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private authService: AuthenticationService
-  ) { }
+  ) {
+    this.isLogged = this.authService.isUserLoggedIn();
+   }
 
   ngOnInit() {
-    if (this.authService.isUserLoggedIn()) {
+    if (this.isLogged) {
       this.getProduct();
       if (this.product)
         this.addToCart(this.product.id);
