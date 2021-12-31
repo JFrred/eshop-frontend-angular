@@ -1,7 +1,7 @@
-<h1>Product save form</h1>
+<h1>Product edit form</h1>
 <mat-card-content>
 
-    <form [formGroup]="saveForm" (ngSubmit)="save()" class="my-form">
+    <form [formGroup]="editForm" *ngIf="this.editForm" (ngSubmit)="edit()" class="my-form">
         <mat-form-field class="full-width">
             <div>
                 <mat-label>Product name
@@ -15,7 +15,7 @@
         <mat-form-field class="full-width">
             <div>
                 <mat-label>description
-                    <input matInput placeholder="description" formControlName="description" required>
+                    <textarea matInput placeholder="description" formControlName="description" required></textarea>
                 </mat-label>
             </div>
             <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
@@ -47,7 +47,7 @@
         </mat-form-field>
         <mat-form-field class="full-width">
             <div>
-                <mat-label>Product name
+                <mat-label>Price
                     <input matInput placeholder="price" formControlName="price" required>
                 </mat-label>
             </div>

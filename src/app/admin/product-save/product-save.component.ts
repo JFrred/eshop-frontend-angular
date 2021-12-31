@@ -36,7 +36,7 @@ export class ProductSaveComponent implements OnInit {
     this.productMgmtService.save(this.saveForm.value)
       .subscribe(
         responseMessage => {
-          this.router.navigate(['/admin'],  { queryParams: { message: responseMessage } });
+          this.router.navigate(['/admin/products'],  { queryParams: { message: responseMessage } });
         },
         error => console.log(error)
       );

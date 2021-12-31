@@ -9,6 +9,7 @@ import { ProductSaveRequest } from '../dto/product-save-request';
   providedIn: 'root'
 })
 export class ProductMgmtService {
+  
  
     url = environment.baseUrl + "/products";
     mgmtUrl = environment.baseUrl + "/api/products";
@@ -33,5 +34,9 @@ export class ProductMgmtService {
 
   public refreshDate(id: number): Observable<any> {
     return this.http.patch<any>(`${this.mgmtUrl}/${id}`, null);
+  }
+
+  public edit(id: number, editRequest: ProductSaveRequest):Observable<any> {
+    return this.http.put<any>(`${this.mgmtUrl}/${id}`, editRequest);
   }
 }
