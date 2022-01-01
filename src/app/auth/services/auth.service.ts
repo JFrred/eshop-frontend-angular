@@ -44,7 +44,14 @@ export class AuthenticationService {
       null);
   }
 
-  getUserRole(): Observable<any> {
-    return this.http.get<any>(`${this.url}/user/role`,  {responseType: 'text' as 'json'});
+  isUserAdmin(): boolean {
+    const token = this.tokenService.getToken();
+    if (token){
+      const decodedToken = atob(token.split('.')[1]);
+      const isAdmin = decodedToken.substring(7).split(',')[1].split(":")[1];
+      return isAdmin == "true";
+    }
+    return false;
   }
+
 }

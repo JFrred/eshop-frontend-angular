@@ -14,25 +14,15 @@ export class NavbarComponent implements OnInit {
   constructor(public authService: AuthenticationService,
     private router: Router) {
     this.isLogged = this.authService.isUserLoggedIn();
+    this.isAdmin = this.authService.isUserAdmin();
+    console.log("admin: " + this.authService.isUserAdmin());
   }
 
   ngOnInit(): void {
-    this.isUserAdmin();
-    console.log("admin: " + this.isAdmin);
+   
   }
 
-  public isUserAdmin(): void {
-    if (this.isLogged) {
-      this.authService.getUserRole().subscribe(
-        response => {
-          this.isAdmin = response == "ADMIN";
-          console.log("admin: " + this.isAdmin);
-        },
-        error => console.log(error)
-      );
-    }
-  }
-
+ 
   public logOut(): void {
     this.authService.logOut();
     this.isLogged = false;

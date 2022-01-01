@@ -26,10 +26,6 @@ export class ProductMgmtComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.authService.getUserRole().subscribe(
-      response => this.isAdmin = response == "ADMIN",
-      error => console.log(error)
-    );
   }
 
   ngOnInit(): void {
@@ -49,7 +45,6 @@ export class ProductMgmtComponent implements OnInit {
   public delete(id: number) {
     let productName = this.products.find(p => p.id == id)?.name;
     if (confirm("'" + productName + "' will be deleted. \nAre you sure?")) {
-      console.log("checkpoint DELETE");
       this.productMgmtService.delete(id).subscribe(
         response => {
           this.message = response;

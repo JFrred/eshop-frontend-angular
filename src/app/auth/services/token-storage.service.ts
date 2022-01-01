@@ -13,7 +13,6 @@ export class TokenStorageService {
   public signOut(): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.removeItem(USER_KEY);
-    // window.sessionStorage.clear();
   }
 
   public saveToken(token: string): void {
@@ -38,4 +37,5 @@ export class TokenStorageService {
 
     return {};
   }
+
 }
