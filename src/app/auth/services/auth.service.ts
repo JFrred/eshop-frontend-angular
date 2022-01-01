@@ -5,6 +5,7 @@ import { TokenStorageService } from "./token-storage.service";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
 import { SignupRequest } from "../signup/signup.request";
+import { LoginRequest } from "../login/login-request";
 
 @Injectable({
   providedIn: "root"
@@ -15,10 +16,10 @@ export class AuthenticationService {
   constructor(private http: HttpClient,
     private tokenService: TokenStorageService) { }
 
-  login(username: string, password: string) {
+  login(request: LoginRequest) {
     return this.http
       .post<AuthResponse>(`${this.url}/perform_login`,
-        { username, password });
+        request);
   }
   
   logOut() {
