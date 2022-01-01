@@ -10,7 +10,8 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderComponent } from './order/order.component';
 import { ProductPageComponent } from './product-page/product-page.component';
-import { RouteGuardService } from './auth/services/route-guard-service';
+import { AdminRouteGuardService } from './auth/services/route-guard-service';
+import { UserRouteGuardService } from './services/user-route-guard-service';
 
 const routes: Routes = [
   {
@@ -31,14 +32,17 @@ const routes: Routes = [
   },
   {
     path: "cart",
+    canActivate : [UserRouteGuardService],
     component: CartComponent
   },
   {
     path: "orders",
+    canActivate : [UserRouteGuardService],
     component: OrderComponent
   },
   {
     path: "order-form",
+    canActivate : [UserRouteGuardService],
     component: OrderFormComponent
   },
 
@@ -52,7 +56,7 @@ const routes: Routes = [
   },
   { 
     path: 'admin/products',
-    canActivate : [RouteGuardService], 
+    canActivate : [AdminRouteGuardService], 
     loadChildren: () => import('./admin/admin-routing-module').then(m => m.AdminRoutingModule)
   },
   {

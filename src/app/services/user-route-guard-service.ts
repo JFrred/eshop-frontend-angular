@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { TokenStorageService } from './token-storage.service';
+import { CanActivate, Router } from '@angular/router';
+import { TokenStorageService } from '../auth/services/token-storage.service'; 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminRouteGuardService implements CanActivate {
+export class UserRouteGuardService implements CanActivate {
 
   constructor(private tokenService: TokenStorageService,
     private router: Router) { }
@@ -13,10 +13,9 @@ export class AdminRouteGuardService implements CanActivate {
   public canActivate(){
     let isAdmin = this.tokenService.getRole();
     if(isAdmin == "true"){
-      return true;
+        this.router.navigateByUrl("/");
     }
 
-    this.router.navigateByUrl("/");
-    return false;
+    return true;
   }
 }
