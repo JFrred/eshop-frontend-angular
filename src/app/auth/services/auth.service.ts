@@ -1,11 +1,11 @@
 import { Injectable, Output } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { AuthResponse } from "../login/auth.response";
+import { AuthResponse } from "../dto/auth.response";
 import { TokenStorageService } from "./token-storage.service";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
-import { SignupRequest } from "../signup/signup.request";
-import { LoginRequest } from "../login/login-request";
+import { SignupRequest } from "../dto/signup.request";
+import { LoginRequest } from "../dto/login-request"; 
 
 @Injectable({
   providedIn: "root"

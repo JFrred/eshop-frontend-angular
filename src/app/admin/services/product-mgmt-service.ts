@@ -10,9 +10,8 @@ import { ProductSaveRequest } from '../dto/product-save-request';
 })
 export class ProductMgmtService {
   
- 
     url = environment.baseUrl + "/products";
-    mgmtUrl = environment.baseUrl + "/api/products";
+    mgmtUrl = environment.baseUrl + "/api/mgmt/products";
 
   constructor(private http: HttpClient) { }
 

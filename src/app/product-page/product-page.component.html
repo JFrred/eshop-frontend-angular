@@ -4,7 +4,7 @@
   </mat-card-title>
   <img mat-card-image [src]="product?.imgUrl" />
   <mat-card-actions fxLayoutAlign="center">
-    <button mat-raised-button color="primary" (click)="addToCart(product.id)">
+    <button [disabled]="this.isAdmin" mat-raised-button color="primary" (click)="addToCart(product.id)">
       Add to cart
     </button>
   </mat-card-actions>

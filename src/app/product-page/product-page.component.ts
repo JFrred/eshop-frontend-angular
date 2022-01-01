@@ -12,6 +12,7 @@ import { AuthenticationService } from '../auth/services/auth.service';
 })
 export class ProductPageComponent implements OnInit {
   isLogged!: boolean;
+  isAdmin!: boolean;
   product!: Product;
 
   constructor(
@@ -21,6 +22,7 @@ export class ProductPageComponent implements OnInit {
     private authService: AuthenticationService
   ) {
     this.isLogged = this.authService.isUserLoggedIn();
+    this.isAdmin = this.authService.isUserAdmin();
    }
 
   ngOnInit() {
