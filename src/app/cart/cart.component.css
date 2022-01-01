@@ -1,0 +1,26 @@
+.mat-card-image {
+    object-fit: contain;
+    height: 100px;
+  }
+  
+.mat-list-item {
+    color: black;
+    background-color: grey;
+    margin-top: 1%;
+}
+  
+
+a:link {
+    color: rgb(252, 255, 204);
+}
+
+.remove-button {
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 23, 23);
+}
+
+.order-selected-button {
+    margin-top: 1%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(19, 92, 19);
+}

@@ -12,6 +12,7 @@ import { OrderComponent } from './order/order.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { AdminRouteGuardService } from './auth/services/route-guard-service';
 import { UserRouteGuardService } from './services/user-route-guard-service';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,8 @@ const routes: Routes = [
     path: "category/:name",
     component: CategoryProductsComponent
   },
-    {
-    path: "product/:id",
+  {
+    path: "products/:id",
     component: ProductPageComponent
   },
   {
@@ -40,23 +41,27 @@ const routes: Routes = [
   },
   {
     path: "cart",
-    canActivate : [UserRouteGuardService],
+    canActivate: [UserRouteGuardService],
     component: CartComponent
   },
   {
     path: "orders",
-    canActivate : [UserRouteGuardService],
+    canActivate: [UserRouteGuardService],
     component: OrderComponent
   },
   {
     path: "order-form",
-    canActivate : [UserRouteGuardService],
+    canActivate: [UserRouteGuardService],
     component: OrderFormComponent
   },
-
-  { 
+  {
+    path: "payments/:id",
+    canActivate: [UserRouteGuardService],
+    component: PaymentDetailsComponent
+  },
+  {
     path: 'admin/products',
-    canActivate : [AdminRouteGuardService], 
+    canActivate: [AdminRouteGuardService],
     loadChildren: () => import('./admin/admin-routing-module').then(m => m.AdminRoutingModule)
   },
   {

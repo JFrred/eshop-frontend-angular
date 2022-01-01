@@ -1,0 +1,10 @@
+<div>
+    <h2>Payments</h2>
+    <mat-card *ngIf="paymentDetails" class="product-card">
+        <p>total:   {{ paymentDetails.totalPrice }} $</p>
+        <p>type:    {{ paymentDetails.paymentType }}</p>
+        <p>status:  {{ paymentDetails.paymentStatus }}</p>
+        <p>date:    {{ paymentDetails.paymentDate.split('.')[0].replace('T', ' - ') }}</p>
+    </mat-card>
+    <br>
+</div>

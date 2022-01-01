@@ -1,4 +1,4 @@
-<mat-card *ngIf="product.id != null" class="product-card" [routerLink]="'/product/' + product?.id">
+<mat-card *ngIf="product.id != null" class="product-card" [routerLink]="'/products/' + product?.id">
   <mat-card-title>{{ product?.name }}</mat-card-title>
   <img mat-card-image [src]="imageUrl" />
   <span>{{product?.price}}$</span>

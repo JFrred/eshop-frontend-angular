@@ -1,5 +1,7 @@
 .mat-list-item {
   color: black;
+  background-color: grey;
+  margin-top: 1%;
 }
 
 .mat-card-image {
@@ -8,8 +10,15 @@
   }
   
 .icon-red {
-  color: red;
+  color: rgb(209, 8, 8);
 }
 .icon-green {
   color: green;
+}
+
+.mat-raised-button {
+  color: rgb(0, 0, 0);
+  background-color: rgb(105, 105, 105);
+  margin-top: 1%;
+    margin-right: 10%;
 }

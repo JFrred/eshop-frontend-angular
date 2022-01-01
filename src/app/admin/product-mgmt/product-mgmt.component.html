@@ -3,11 +3,11 @@
     <mat-list>
         <mat-list-item *ngFor="let product of products">
             <img mat-card-image [src]="product.imgUrl" matListAvatar alt="">
-            <div matLine>{{ product.name }}</div>
-            <div matLine>price: {{ product.price }}</div>
+            <div matTitle><b>{{ product.name }}</b></div>
+            <div matLine>price: {{ product.price }} $</div>
             <div matLine>category : {{ product.category }}</div>
-            <div matLine>{{ product.description.substring(0, 50) }}...</div>
-            <div matLine>{{ product.lastModified.split('.')[0] }}</div>
+            <div matLine>description {{ product.description.substring(0, 50) }}...</div>
+            <div matLine>date: {{ product.lastModified.split('.')[0] }}</div>
             
             <div>
                 <button class="icon-red" mat-icon-button aria-label="delete button" (click)="delete(product.id)">

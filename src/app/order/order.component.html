@@ -1,35 +1,18 @@
+<h2 *ngIf="orders && orders.length == 0">You haven't ordered anything yet</h2>
+
 <div *ngFor="let order of orders">
-    <mat-card *ngIf="order != null" class="product-card" >
-        <!-- <mat-card-title>{{ order?. }}</mat-card-title> -->
-        <span>total: {{order?.totalPrice}}$</span> <br>
-        <span>date: {{order?.date}}</span>
+    <mat-card *ngIf="order" class="product-card">
+        <p>date: {{order?.date}}</p>
+        <p>total: {{order?.totalPrice}}$</p>
+
+        <div *ngFor="let item of order.items">
+            <a [routerLink]="['/products/', item.productId]"> {{ item.name }}</a> x {{ item.quantity }}, {{ item.price
+            }}
+        </div>
+        <br>
+        <div>
+            <a [routerLink]="['/payments/', order.paymentId]">Payment details</a>
+        </div>
     </mat-card>
-
+    <br>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<!-- <p>order works!</p>
-<h1>Orders</h1>
-<div *ngFor="let order of orders">
-    <h3>Order info:</h3>
-    <p> seller: {{ order.sellerName }}</p>
-    <p> total order price: {{ order.totalPrice }}</p>
-    <p> order date: {{ order.date }}</p>
-    
-    <h3>Order items</h3>
-    <div *ngFor="let orderItem of order.items">
-        <p><b>product name: {{ orderItem.name }}</b> </p>
-        <p>price: {{ orderItem.price }} $</p>
-        <p>quantity: {{ orderItem.quantity }} </p>
-    </div>
- 
-</div> -->

@@ -2,30 +2,22 @@
     <h2 *ngIf="this.isEmpty">
         Your cart is empty
     </h2>
+
     <div *ngIf="!this.isEmpty">
-        <p *ngIf="cart"><b>total cart price:</b> {{ cart.totalPrice }} $</p>
-        <p *ngIf="items"><b>cart items count: </b>{{ items.length }}</p>
+        <h2>Shopping cart</h2>
+        <div matLine *ngIf="cart"><b>total cart price:</b> {{ cart.totalPrice }} $</div>
+        <div matLine *ngIf="items"><b>total items: </b>{{ items.length }}</div>
 
-        <h2>cart items</h2>
-
-        <table>
-            <tr>
-                <td></td>
-                <td>name </td>
-                <td>price </td>
-                <td>quantity </td>
-            </tr>
-
-
-            <tr *ngFor="let item of items">
+        <mat-list>
+            <mat-list-item *ngFor="let item of items">
                 <input type="checkbox" name="sameadr" (click)="selectItem(item.id)">
-                <th>{{item.name}}</th>
-                <td>{{item.price}}</td>
-                <td>{{ item.quantity }}</td>
-                <td><button (click)="remove(item.id)">remove</button></td>
-            </tr>
+                <img mat-card-image [src]="item.imgUrl" matListAvatar alt="">
+                <div matLine><a [routerLink]="['/products/', item.id]"> {{item.name}}</a></div>
+                <div matLine>{{item.price}} $</div>
+                <div matLine> x {{ item.quantity }}</div>
+                <div matLine><button mat-raised-button (click)="remove(item.id)" class="remove-button">remove</button></div>
+            </mat-list-item>
+        </mat-list>
+        <button mat-raised-button (click)="orderSelected()" class="order-selected-button">order selected</button>
 
-            <button (click)="orderSelected()">order selected</button>
-        </table>
     </div>
-</div>
