@@ -26,6 +26,7 @@
     "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining": "^7.16.7",
     "@material/card": "^13.0.0",
     "jwt-decode": "^3.1.2",
+    "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"

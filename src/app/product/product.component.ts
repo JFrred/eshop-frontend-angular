@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthenticationService } from '../auth/services/auth.service';
 import { Product } from '../models/product';
 
 @Component({
@@ -14,4 +13,6 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
    this.imageUrl = this.product?.imgUrl ?? '';
   }
+
+
 }

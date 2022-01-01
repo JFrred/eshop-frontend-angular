@@ -41,6 +41,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MatListModule } from '@angular/material/list';
 import { ProductSaveComponent } from './admin/product-save/product-save.component';
 import { ProductEditComponent } from './admin/product-edit/product-edit.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ProductEditComponent } from './admin/product-edit/product-edit.componen
     FormsModule,
     AppRoutingModule,
     FlexLayoutModule,
+    NgxPaginationModule,
 
     MatButtonModule,
     MatCardModule,

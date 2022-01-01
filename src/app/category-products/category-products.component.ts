@@ -10,22 +10,43 @@ import { ProductService } from '../services/product.service';
 })
 export class CategoryProductsComponent implements OnInit {
   products!: Product[];
+  
+  page!: number;
+  itemsPerPage = 4;
+  totalProducts!: number;
 
   constructor(private activatedRoute: ActivatedRoute,
     private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.page = 0;
+    this.getProducts(this.page);
   }
 
-  public getProducts() {
+  public getProducts(page: number) {
     const category = String(this.activatedRoute.snapshot.paramMap.get('name'));
-    console.log(category);
-    this.productService.getProductsByCategory(category).subscribe(
+    this.countProducts(category);
+    this.productService.getProductsByCategory(category, page).subscribe(
       (data: any) => {
         this.products = data;
-        console.log(this.products);
+        this.countProducts(category);
+      },
+      error => console.log(error)
+    );
+  }
+
+  countProducts(categoryName: string): void {
+    this.productService.countCategoryProducts(categoryName).subscribe(
+      (response: number) => {
+        this.totalProducts = response;
+        console.log("total: " + this.totalProducts);
       }
     );
+  }
+
+  pageChanged(event: any){
+    this.page = event;
+    this.getProducts(this.page - 1);
+    console.log("page=" + this.page);
   }
 }

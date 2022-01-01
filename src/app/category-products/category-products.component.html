@@ -1,3 +1,13 @@
-<ul fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-    <app-product *ngFor="let p of products" [product]="p"></app-product>>
-</ul>
+<div class="main-box">
+    <ul fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
+    <app-product *ngFor="let p of products | paginate
+    : {
+        itemsPerPage: itemsPerPage,
+        currentPage: page,
+        totalItems: totalProducts
+      }" [product]="p"></app-product>>
+    </ul>
+    <div class = "pagination-box">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+</div>
