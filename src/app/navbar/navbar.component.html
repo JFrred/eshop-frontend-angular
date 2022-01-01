@@ -33,7 +33,7 @@
   </button>
 
   <button *ngIf="this.isLogged" mat-icon-button aria-label="Logout button"
-    (click)="this.authService.logOut()" [routerLink]="['/']">
+    (click)="this.logOut()">
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

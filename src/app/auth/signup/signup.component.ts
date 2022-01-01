@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
 
 
     //todo: show server side validation exception message
-    this.authService.register(this.form.value)
+    this.authService.signup(this.form.value)
       .subscribe(
         response => {
           console.log(response.message);

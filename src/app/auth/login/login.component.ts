@@ -27,14 +27,13 @@ export class LoginComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       console.log("auth token: " + this.tokenStorage.getToken() == null);
       this.isLoggedIn = true;
-      // this.roles = this.tokenStorage.getUser().roles;
     }
   }
 
   onSubmit(): void {
     const { username, password } = this.form;
 
-    this.authService.authenticate(username, password).subscribe(
+    this.authService.login(username, password).subscribe(
       (response: AuthResponse) => {
         console.log("token: " + response.token);
 
@@ -44,10 +43,10 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        // this.roles = this.tokenStorage.getUser().roles;
-
         
-        this.router.navigate(['/', ])
+        this.router.navigate(['']).then(() => {
+          window.location.reload();
+       });
       },
       (error: Error) => {
         this.errorMessage = error.message;

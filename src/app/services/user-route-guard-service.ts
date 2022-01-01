@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { AuthenticationService } from '../auth/services/auth.service';
 import { TokenStorageService } from '../auth/services/token-storage.service'; 
 
 @Injectable({
@@ -7,12 +8,11 @@ import { TokenStorageService } from '../auth/services/token-storage.service';
 })
 export class UserRouteGuardService implements CanActivate {
 
-  constructor(private tokenService: TokenStorageService,
+  constructor(private authService: AuthenticationService,
     private router: Router) { }
 
   public canActivate(){
-    let isAdmin = this.tokenService.getRole();
-    if(isAdmin == "true"){
+    if(!this.authService.isUserLoggedIn() || (this.authService.isUserLoggedIn() && this.authService.isUserAdmin())){
         this.router.navigateByUrl("/");
     }
 

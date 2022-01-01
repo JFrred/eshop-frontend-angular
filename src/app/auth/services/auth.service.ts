@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable, Output } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { AuthResponse } from "../login/auth.response";
 import { TokenStorageService } from "./token-storage.service";
 import { environment } from "src/environments/environment";
@@ -15,33 +15,33 @@ export class AuthenticationService {
   constructor(private http: HttpClient,
     private tokenService: TokenStorageService) { }
 
-  authenticate(username: string, password: string) {
+  login(username: string, password: string) {
     return this.http
       .post<AuthResponse>(`${this.url}/perform_login`,
         { username, password });
   }
-
-  isUserLoggedIn() {
-    console.log("is logged");
-    return this.tokenService.getToken() != null;
-  }
-
+  
   logOut() {
     this.tokenService.signOut();
+    window.sessionStorage.clear();
   }
-
-  register(signupRequest: SignupRequest): Observable<any> {
+  
+  signup(signupRequest: SignupRequest): Observable<any> {
     console.log("request: " + signupRequest);
 
     return this.http.post<any>(
       `${this.url}/perform_signup`,
       signupRequest);
   }
-
+  
   activateAccount(token: string): Observable<any> {
     return this.http.post<any>(
       `${this.url}/account-verification?token=${token}`,
       null);
+  }
+
+  isUserLoggedIn() {
+    return this.tokenService.getToken() != null;
   }
 
   isUserAdmin(): boolean {

@@ -23,12 +23,20 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
-    path: "product/:id",
-    component: ProductPageComponent
+    path: "account-verification",
+    component: AccountActivationComponent
   },
   {
     path: "category/:name",
     component: CategoryProductsComponent
+  },
+    {
+    path: "product/:id",
+    component: ProductPageComponent
+  },
+  {
+    path: "my-profile",
+    component: MyProfileComponent
   },
   {
     path: "cart",
@@ -46,14 +54,6 @@ const routes: Routes = [
     component: OrderFormComponent
   },
 
-  {
-    path: "my-profile",
-    component: MyProfileComponent
-  },
-  {
-    path: "account-verification",
-    component: AccountActivationComponent
-  },
   { 
     path: 'admin/products',
     canActivate : [AdminRouteGuardService], 
