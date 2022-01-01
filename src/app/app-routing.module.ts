@@ -9,10 +9,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderComponent } from './order/order.component';
-import { ProductMgmtComponent } from './admin/product-mgmt/product-mgmt.component';
 import { ProductPageComponent } from './product-page/product-page.component';
-import { ProductSaveComponent } from './admin/product-save/product-save.component';
-import { ProductEditComponent } from './admin/product-edit/product-edit.component';
+import { RouteGuardService } from './auth/services/route-guard-service';
 
 const routes: Routes = [
   {
@@ -26,18 +24,6 @@ const routes: Routes = [
   {
     path: "product/:id",
     component: ProductPageComponent
-  },
-  {
-    path: "admin/products",
-    component: ProductMgmtComponent
-  },
-  {
-    path: "admin/products/add",
-    component: ProductSaveComponent
-  },
-  {
-    path: "admin/products/edit/:id",
-    component: ProductEditComponent
   },
   {
     path: "category/:name",
@@ -64,9 +50,10 @@ const routes: Routes = [
     path: "account-verification",
     component: AccountActivationComponent
   },
-  {
-    path:"admin/products/save",
-    component: ProductSaveComponent
+  { 
+    path: 'admin/products',
+    canActivate : [RouteGuardService], 
+    loadChildren: () => import('./admin/admin-routing-module').then(m => m.AdminRoutingModule)
   },
   {
     path:

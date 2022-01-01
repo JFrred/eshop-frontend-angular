@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 
 const TOKEN_KEY = environment.tokenKey;
 const USER_KEY = environment.userKey;
+const ADMIN_KEY = environment.adminKey;
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,12 @@ export class TokenStorageService {
     return {};
   }
 
+  public getRole(): any {
+    return window.sessionStorage.getItem(ADMIN_KEY);
+  }
+
+  public saveRole(isAdmin: boolean): void {
+    window.sessionStorage.removeItem(ADMIN_KEY);
+    window.sessionStorage.setItem(ADMIN_KEY, String(isAdmin));
+  }
 }

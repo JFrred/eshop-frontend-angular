@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       console.log("auth token: " + this.tokenStorage.getToken() == null);
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+      // this.roles = this.tokenStorage.getUser().roles;
     }
   }
 
@@ -40,12 +40,13 @@ export class LoginComponent implements OnInit {
 
         this.tokenStorage.saveToken(response.token);
         this.tokenStorage.saveUser(response.username);
-
+        this.tokenStorage.saveRole(this.authService.isUserAdmin());
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+        // this.roles = this.tokenStorage.getUser().roles;
 
+        
         this.router.navigate(['/', ])
       },
       (error: Error) => {
