@@ -1,7 +1,7 @@
 <mat-card-content>
 
   <form *ngIf="!isLoggedIn" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="my-form">
-    
+
     <mat-form-field class="full-width">
       <div>
         <mat-label>Username
@@ -12,7 +12,7 @@
         <div *ngIf="f['username'].errors.required">Username is required</div>
       </div>
     </mat-form-field>
-   
+
     <mat-form-field class="full-width">
       <div>
         <mat-label>Password</mat-label>
@@ -30,11 +30,11 @@
     <div class="alert alert-success" *ngIf="isLoggedIn">
       You have been logged in.
     </div>
- 
+
   </form>
 
 </mat-card-content>
 
-    <!-- <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+<!-- <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
       Login failed: {{ errorMessage }}
     </div> -->

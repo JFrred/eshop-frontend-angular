@@ -47,8 +47,9 @@ export class ProductEditComponent implements OnInit {
   }
 
   public edit(): void {
-    this.productMgmtService.edit(this.id, this.editForm.value).subscribe();
-    this.router.navigate(['/admin/products']);
+    this.productMgmtService.edit(this.id, this.editForm.value).subscribe(
+      () => this.router.navigate(['/admin/products'])
+    );
   }
 
   get f() { return this.editForm.controls; }

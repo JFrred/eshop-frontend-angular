@@ -19,7 +19,7 @@ export class ProductSaveComponent implements OnInit {
   ngOnInit(): void {
     this.saveForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: ['', Validators.required],
+      description: ['', Validators.required, Validators.maxLength(255)],
       category: ['', Validators.required],
       imgUrl: ['', Validators.required],
       price: ['', Validators.required],
@@ -32,16 +32,10 @@ export class ProductSaveComponent implements OnInit {
       return;
     }
 
-    //todo: validate save form (description shorter than 255)
     this.productMgmtService.save(this.saveForm.value)
-      .subscribe(
-        responseMessage => {
-          this.router.navigate(['/admin/products'],  { queryParams: { message: responseMessage } });
-        },
-        error => console.log(error)
-      );
+      .subscribe();
 
-      
+    this.router.navigate(['/admin/products']);
   }
 
   get f() { return this.saveForm.controls; }
