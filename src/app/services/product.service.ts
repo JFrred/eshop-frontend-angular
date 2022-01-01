@@ -29,14 +29,15 @@ export class ProductService {
   public getProductsByCategory(category: string, page: number): Observable<Product> {
 
     let params = new HttpParams()
-    .append("page", page)
-    .append("size", 2);
+      .append("page", page)
+      .append("size", 2);
 
     return this.http.get<Product>(this.url + "/categories/" + category, { params: params });
   }
 
   public countCategoryProducts(categoryName: string): Observable<number> {
-    return this.http.get<number>(this.url + "/count/" + categoryName);
+    return this.http.get<number>(this.url + "/count/" + categoryName,
+      { responseType: 'text' as 'json' });
   }
 
 }
