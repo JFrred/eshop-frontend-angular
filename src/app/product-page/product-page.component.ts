@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
@@ -16,7 +16,8 @@ export class ProductPageComponent implements OnInit {
   product!: Product;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
     private authService: AuthenticationService
@@ -34,7 +35,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.productService
       .getProduct(id)
       .subscribe((product) => this.product = product);
@@ -42,5 +43,14 @@ export class ProductPageComponent implements OnInit {
 
   addToCart(id: number): void {
     this.cartService.add(id).subscribe();
+  }
+
+  buyNow(id: number): void {
+    const queryParam: any = {};
+    queryParam.cartItemIds = JSON.stringify([id]);
+    const navigationExtras: NavigationExtras = {
+      queryParams: queryParam
+    };
+    this.router.navigate(['/order-form'], navigationExtras);
   }
 }

@@ -10,26 +10,26 @@ import { ProductService } from '../services/product.service';
 })
 export class CategoryProductsComponent implements OnInit {
   products!: Product[];
+  category!: string;
 
-  page!: number;
+  page = 0;
   itemsPerPage = 2;
   totalProducts!: number;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private productService: ProductService) { }
+    private productService: ProductService) {
+  }
 
   ngOnInit(): void {
-    this.page = 0;
+    this.category = String(this.activatedRoute.snapshot.paramMap.get('name'));
+    this.countProducts(this.category);
     this.getProducts(this.page);
   }
 
   public getProducts(page: number) {
-    const category = String(this.activatedRoute.snapshot.paramMap.get('name'));
-    // this.countProducts(category);
-    this.productService.getProductsByCategory(category, page).subscribe(
+    this.productService.getProductsByCategory(this.category, page, this.itemsPerPage).subscribe(
       (data: any) => {
         this.products = data;
-        this.countProducts(category);
       },
       error => console.log(error)
     );
@@ -38,9 +38,8 @@ export class CategoryProductsComponent implements OnInit {
   countProducts(categoryName: string): void {
     this.productService.countCategoryProducts(categoryName).subscribe(
       response => {
-        console.log(response);
         this.totalProducts = response;
-        console.log("total: " + this.totalProducts);
+        console.log("count: " + this.totalProducts);
       }
     );
   }
@@ -48,6 +47,5 @@ export class CategoryProductsComponent implements OnInit {
   pageChanged(event: any) {
     this.page = event;
     this.getProducts(this.page - 1);
-    console.log("page=" + this.page);
   }
 }

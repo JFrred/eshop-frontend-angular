@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 import { ProductMgmtService } from '../services/product-mgmt-service';
 
 @Component({
@@ -21,23 +20,23 @@ export class ProductMgmtComponent implements OnInit {
   editForm!: FormGroup;
   updateForm!: FormGroup;
 
+  page= 0;
+  itemsPerPage = 5;
+  totalProducts!: number;
 
   constructor(private productMgmtService: ProductMgmtService,
-    private authService: AuthenticationService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private productService: ProductService) {
   }
 
   ngOnInit(): void {
- 
-    this.getProducts();
+    this.countProducts();
+    this.getProducts(this.page);
   }
 
-  public getProducts() {
-    this.productMgmtService.getAll().subscribe(
+  public getProducts(page: number) {
+    this.productService.getAll(page, this.itemsPerPage).subscribe(
       (data: any) => {
         this.products = data;
-        console.log(this.products);
       }
     );
   }
@@ -46,10 +45,7 @@ export class ProductMgmtComponent implements OnInit {
     let productName = this.products.find(p => p.id == id)?.name;
     if (confirm("'" + productName + "' will be deleted. \nAre you sure?")) {
       this.productMgmtService.delete(id).subscribe(
-        response => {
-          this.message = response;
-          console.log(this.message);
-        },
+        response => this.message = response,
         error => console.log(error)
       );
       this.reloadPage();
@@ -60,6 +56,20 @@ export class ProductMgmtComponent implements OnInit {
   public refresh(id: number): void {
     this.productMgmtService.refreshDate(id).subscribe();
     this.reloadPage();
+  }
+
+  countProducts(): void {
+    this.productMgmtService.countAll().subscribe(
+      response => {
+        this.totalProducts = response;
+        console.log("count: " + this.totalProducts);
+      }
+    );
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.getProducts(this.page - 1);
   }
 
   reloadPage(): void {

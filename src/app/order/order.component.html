@@ -1,5 +1,5 @@
 <h2 *ngIf="orders && orders.length == 0">You haven't ordered anything yet</h2>
-
+<h2>Orders</h2>
 <div *ngFor="let order of orders">
     <mat-card *ngIf="order" class="product-card">
         <p>date: {{order?.date}}</p>

@@ -9,15 +9,16 @@ import { Product } from '../models/product';
 })
 export class ProductService {
 
+
   url = environment.baseUrl + "/products";
   mgmtUrl = environment.baseUrl + "/api/products";
 
   constructor(private http: HttpClient) { }
 
-  public getAll(page: number): Observable<Product[]> {
+  public getAll(page: number, itemsPerPage: number): Observable<Product[]> {
     let params = new HttpParams()
       .append("page", page)
-      .append("size", 2);
+      .append("size", itemsPerPage);
 
     return this.http.get<Product[]>(this.url, { params: params });
   }
@@ -26,11 +27,10 @@ export class ProductService {
     return this.http.get<Product>(`${this.url}/${id}`);
   }
 
-  public getProductsByCategory(category: string, page: number): Observable<Product> {
-
+  public getProductsByCategory(category: string, page: number, itemsPerPage:number): Observable<Product> {
     let params = new HttpParams()
       .append("page", page)
-      .append("size", 2);
+      .append("size", itemsPerPage);
 
     return this.http.get<Product>(this.url + "/categories/" + category, { params: params });
   }

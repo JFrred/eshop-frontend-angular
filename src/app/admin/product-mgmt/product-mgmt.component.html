@@ -1,7 +1,12 @@
 <h2 *ngIf="message"> {{ message }} </h2>
 <div class="container">
     <mat-list>
-        <mat-list-item *ngFor="let product of products">
+        <mat-list-item *ngFor="let product of products | paginate
+        : {
+            itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: totalProducts
+          }">
             <img mat-card-image [src]="product.imgUrl" matListAvatar alt="">
             <div matTitle><b>{{ product.name }}</b></div>
             <div matLine>price: {{ product.price }} $</div>
@@ -27,6 +32,9 @@
                 </button>
             </div>
         </mat-list-item>
+        <div class = "pagination-box">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
     </mat-list>
     <button mat-raised-button [routerLink]="['/admin/products/add']">Add new product</button>
 </div>

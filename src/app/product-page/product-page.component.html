@@ -7,6 +7,9 @@
     <button [disabled]="this.isAdmin" mat-raised-button color="primary" (click)="addToCart(product.id)">
       Add to cart
     </button>
+    <button [disabled]="this.isAdmin" mat-raised-button color="primary" (click)="buyNow(product.id)">
+      Buy now
+    </button>
   </mat-card-actions>
   <mat-card-content>
     {{ product?.description }}
