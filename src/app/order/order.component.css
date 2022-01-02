@@ -1,3 +1,13 @@
 .mat-card {
     margin-top: 5%;
 }
+
+#order-box{ 
+    width: 500px;
+    height: 300px;
+}
+
+#order-box #payment-link{ 
+    position: relative;
+    margin-left: 70%;
+}

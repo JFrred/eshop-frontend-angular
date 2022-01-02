@@ -6,7 +6,7 @@ import { OrderRequest } from "src/models/order-request";
 import { OrderBillingAddress } from "../models/order-billing-address";
 import { OrderDetails } from "../models/order.details";
 import { OrderItem } from "src/models/order-item";
-import { CartItem } from "src/models/cart.item";
+import { OrderFormItem } from "src/models/order-form-item";
 
 @Injectable({
     providedIn: 'root'
@@ -44,14 +44,14 @@ export class OrderService {
         });
     }
 
-    public save(items: CartItem[], billingAddress: OrderBillingAddress): Observable<any> {
+    public save(items: OrderFormItem[], billingAddress: OrderBillingAddress): Observable<any> {
         console.log(items);
         let orderItems: OrderItem[] = [];
         let orderItem;
 
         for (let item of items) {
-            console.log(item.id + " - " + item.quantity);
-            orderItem = new OrderItem(item.id, item.quantity);
+            console.log(item.productId + " - " + item.quantity);
+            orderItem = new OrderItem(item.productId, item.quantity);
             console.log("orderItem : " + orderItem);
             orderItems.push(orderItem);
         }
@@ -59,7 +59,13 @@ export class OrderService {
         console.log("order items : " + orderItems);
 
         let paymentType = "TRANSFER";
-        let orderRequest = new OrderRequest(orderItems, paymentType);
+        let orderRequest = new OrderRequest(orderItems,
+            billingAddress.fullName,
+            billingAddress.email,
+            billingAddress.city,
+            billingAddress.street,
+            billingAddress.postalCode,
+            paymentType);
 
         return this.http.post<any>(this.url,
             orderRequest,

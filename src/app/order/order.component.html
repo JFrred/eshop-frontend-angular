@@ -1,18 +1,27 @@
 <h2 *ngIf="orders && orders.length == 0">You haven't ordered anything yet</h2>
-<h2>Orders</h2>
-<div *ngFor="let order of orders">
-    <mat-card *ngIf="order" class="product-card">
-        <p>date: {{order?.date}}</p>
-        <p>total: {{order?.totalPrice}}$</p>
+<div *ngIf="orders && orders.length > 0">
+    <h2>Orders</h2>
+    <div *ngFor="let order of orders" id="order-box">
+        <mat-card *ngIf="order" class="product-card">
+            <div matLine>date:  {{order?.date}}</div>
+            <div matLine>total: {{order?.totalPrice}}$</div>
+            <div matLine>name: {{order?.fullName}}</div>
+            <div matLine>email: {{order?.email}}</div>
+            <div matLine>city: {{order?.city}}</div>
+            <div matLine>street: {{order?.street}}</div>
+            <div matLine>postal code: {{order?.postalCode}}</div>
+            <br>
 
-        <div *ngFor="let item of order.items">
-            <a [routerLink]="['/products/', item.productId]"> {{ item.name }}</a> x {{ item.quantity }}, {{ item.price
-            }}
-        </div>
+            <div *ngFor="let item of order.items">
+                <a [routerLink]="['/products/', item.productId]"> {{ item.name }}</a> x {{ item.quantity }}, {{
+                item.price
+                }}
+            </div>
+            <br>
+            <div id="payment-link">
+                <a [routerLink]="['/payments/', order.paymentId]" >Payment details</a>
+            </div>
+        </mat-card>
         <br>
-        <div>
-            <a [routerLink]="['/payments/', order.paymentId]">Payment details</a>
-        </div>
-    </mat-card>
-    <br>
+    </div>
 </div>

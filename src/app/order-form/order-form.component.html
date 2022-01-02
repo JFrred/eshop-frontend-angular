@@ -12,7 +12,7 @@
         <div *ngFor="let item of items">
           <p>
             <span>{{ item.quantity }} x </span>
-            <a href="/products/{{item.id}}">{{ item.name }} </a>
+            <a href="/products/{{item.productId}}">{{ item.name }} </a>
             <span class="price"> {{ item.price }} $ </span>
           </p>
         </div>
@@ -32,41 +32,55 @@
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <input type="text" id="fname" formControlName="fullName" placeholder="John M. Doe">
             <div *ngIf="submitted && f['fullName'].errors?.required" class="invalid-feedback">
-              Username is required
+              Name is required
             </div>
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
             <input type="text" id="email" formControlName="email" placeholder="john@example.com">
             <div *ngIf="submitted && f['email'].errors?.required" class="invalid-feedback">
-              Username is required
+              Email is required
             </div>
 
             <label for="city"><i class="fa fa-institution"></i> City</label>
             <input type="text" id="city" formControlName="city" placeholder="New York">
             <div *ngIf="submitted && f['city'].errors?.required" class="invalid-feedback">
-              Username is required
+              City is required
             </div>
 
             <label for="adr"><i class="fa fa-address-card-o"></i> Street</label>
             <input type="text" id="adr" formControlName="street" placeholder="542 W. 15th Street">
             <div *ngIf="submitted && f['street'].errors?.required" class="invalid-feedback">
-              >Username is required
+              Street is required
             </div>
 
             <label for="zip">Postal code</label>
             <input type="text" id="zip" formControlName="postalCode" placeholder="xx-xxx">
-            <div *ngIf="submitted && f['postalCode'].errors?.requiredrors" class="invalid-feedback">
-              Username is required
+            <div *ngIf="submitted && f['postalCode'].errors?.required" class="invalid-feedback">
+              Postal code is required
             </div>
+
+            <mat-label>Payment type
+              <select formControlName="paymentType" required>
+                <option value="TRANSFER">transfer</option>
+                <option value="BLIK">blik</option>
+                <option value="CARD">card</option>
+              </select>
+              <div *ngIf="submitted && f['paymentType'].errors?.required" class="invalid-feedback">
+                Payment type is required
+              </div>
+            </mat-label>
           </div>
 
         </div>
-      </div>
-      <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Place Order" />
-      </div>
 
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Place Order" />
+        </div>
+      </div>
     </form>
   </div>
+
+
+
 
 
 </div>

@@ -47,7 +47,7 @@ export class ProductPageComponent implements OnInit {
 
   buyNow(id: number): void {
     const queryParam: any = {};
-    queryParam.cartItemIds = JSON.stringify([id]);
+    queryParam.productId = JSON.stringify(this.product.id);
     const navigationExtras: NavigationExtras = {
       queryParams: queryParam
     };
