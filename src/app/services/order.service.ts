@@ -58,14 +58,13 @@ export class OrderService {
 
         console.log("order items : " + orderItems);
 
-        let paymentType = "TRANSFER";
         let orderRequest = new OrderRequest(orderItems,
             billingAddress.fullName,
             billingAddress.email,
             billingAddress.city,
             billingAddress.street,
             billingAddress.postalCode,
-            paymentType);
+            billingAddress.paymentType);
 
         return this.http.post<any>(this.url,
             orderRequest,
