@@ -33,6 +33,18 @@
       </ul>
     </li>
     <li>
+      <a href="#demo">Demo</a>
+      <ul>
+      <li><a href="#home-page">Home page</a></li>
+      <li><a href="#register-page">Register page</a></li>
+      <li><a href="#product-page">Product page</a></li>
+      <li><a href="#cart-page">Cart page</a></li>
+      <li><a href="#order-form-page">Order form page</a></li>
+      <li><a href="#orders-list-page">Orders list page</a></li>
+      <li><a href="#admin-page">Admin page</a></li>
+      </ul>
+    </li>
+    <li>
       <a href="#quick-started">Quick start</a>
       <ul>
         <li><a href="#development-server">Development server</a></li>
@@ -49,6 +61,30 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 It is simple user interface which is 
 ## Built With
 * [AngularCli](https://angular.io/cli)
+
+
+## Demo
+### Home page
+<img src="demo/home-page.png" width="900"><br>
+
+### Register page
+<img src="demo/register-page.png" width="900"><br>
+
+### Product page
+<img src="demo/bike-page.png" width="900"><br>
+
+### Cart page
+<img src="demo/cart-page.png" width="900"><br>
+
+### Order form page
+<img src="demo/order-page.png" width="900"><br>
+
+### Orders list page
+<img src="demo/orders-list-page.png" width="900"><br>
+
+### Admin page
+<img src="demo/admin-mgmt-page.png" width="900"><br>
+
 
 ## Quick start
 ```sh
