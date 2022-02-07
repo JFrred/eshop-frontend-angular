@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { OrderRepresenatation } from '../models/order-representation';
 import { OrderDetails } from '../models/order.details';
 import { OrderService } from '../services/order.service';
 
@@ -8,7 +9,7 @@ import { OrderService } from '../services/order.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  orders!: OrderDetails[];
+  orders!: OrderRepresenatation;
 
   constructor(private orderService: OrderService) { }
 

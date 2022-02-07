@@ -22,25 +22,16 @@ export class CategoryProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = String(this.activatedRoute.snapshot.paramMap.get('name'));
-    this.countProducts(this.category);
     this.getProducts(this.page);
   }
 
   public getProducts(page: number) {
     this.productService.getProductsByCategory(this.category, page, this.itemsPerPage).subscribe(
       (data: any) => {
-        this.products = data;
+        this.products = data.products;
+        this.totalProducts = data.size;
       },
       error => console.log(error)
-    );
-  }
-
-  countProducts(categoryName: string): void {
-    this.productService.countCategoryProducts(categoryName).subscribe(
-      response => {
-        this.totalProducts = response;
-        console.log("count: " + this.totalProducts);
-      }
     );
   }
 

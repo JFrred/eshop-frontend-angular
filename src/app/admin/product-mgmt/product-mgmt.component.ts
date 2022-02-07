@@ -29,14 +29,15 @@ export class ProductMgmtComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countProducts();
+    // this.countProducts();
     this.getProducts(this.page);
   }
 
   public getProducts(page: number) {
     this.productService.getAll(page, this.itemsPerPage).subscribe(
       (data: any) => {
-        this.products = data;
+        this.products = data.products;
+        this.totalProducts = data.size;
       }
     );
   }
@@ -58,14 +59,14 @@ export class ProductMgmtComponent implements OnInit {
     this.reloadPage();
   }
 
-  countProducts(): void {
-    this.productMgmtService.countAll().subscribe(
-      response => {
-        this.totalProducts = response;
-        console.log("count: " + this.totalProducts);
-      }
-    );
-  }
+  // countProducts(): void {
+  //   this.productMgmtService.countAll().subscribe(
+  //     response => {
+  //       this.totalProducts = response;
+  //       console.log("count: " + this.totalProducts);
+  //     }
+  //   );
+  // }
 
   pageChanged(event: any) {
     this.page = event;

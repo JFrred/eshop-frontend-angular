@@ -1,7 +1,7 @@
-<h2 *ngIf="orders && orders.length == 0">You haven't ordered anything yet</h2>
-<div *ngIf="orders && orders.length > 0">
+<h2 *ngIf="orders.orders.length == 0">You haven't ordered anything yet</h2>
+<div *ngIf="orders && orders.orders.length > 0">
     <h2>Orders</h2>
-    <div *ngFor="let order of orders" id="order-box">
+    <div *ngFor="let order of orders.orders" id="order-box">
         <mat-card *ngIf="order" class="product-card">
             <div matLine>date:  {{order?.date}}</div>
             <div matLine>total: {{order?.totalPrice}}$</div>

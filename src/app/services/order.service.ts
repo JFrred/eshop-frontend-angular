@@ -7,6 +7,7 @@ import { OrderBillingAddress } from "../models/order-billing-address";
 import { OrderDetails } from "../models/order.details";
 import { OrderItem } from "src/models/order-item";
 import { OrderFormItem } from "src/models/order-form-item";
+import { OrderRepresenatation } from "../models/order-representation";
 
 @Injectable({
     providedIn: 'root'
@@ -16,8 +17,8 @@ export class OrderService {
 
     constructor(private http: HttpClient) { }
 
-    public getAll(): Observable<OrderDetails[]> {
-        return this.http.get<OrderDetails[]>(this.url);
+    public getAll(): Observable<OrderRepresenatation> {
+        return this.http.get<OrderRepresenatation>(this.url);
     }
 
     public get(id: number): Observable<OrderDetails> {
