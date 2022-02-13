@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 [![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/cli)
-<a href="https://www.linkedin.com/in/fryderyk-j-04a7aa221/">
+<a href="https://www.linkedin.com/in/fryderyk-jachimczak/">
 <img align="right" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white">
 </a> 
 
