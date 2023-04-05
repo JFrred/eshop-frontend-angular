@@ -13,10 +13,10 @@
   <p align="center">
     User interface for online bike shop
     <br />
-    <a href="https://github.com/JFrred/bike-shop-angular"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/qloqloq/bike-shop-angular"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/JFrred/bike-shop-spring">View backend code</a>
+    <a href="https://github.com/qloqloq/bike-shop-spring">View backend code</a>
 </div>
 
 
@@ -88,7 +88,7 @@ It is simple user interface which is
 
 ## Quick start
 ```sh
-git clone https://github.com/JFrred/bike-shop-angular.git
+git clone https://github.com/qloqloq/bike-shop-angular.git
 ```
 
 ### Development server
